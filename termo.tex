@@ -11,7 +11,8 @@
 \usepackage[portuges]{babel}
 \usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
 \usepackage{amsmath,amssymb}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{graphicx}
 
 \setbeamercovered{dynamic}
@@ -41,11 +42,11 @@
 
 \logo{\pgfuseimage{logo}}
 
-\title{Forças Termodinâmicas}
+\title{ForÃ§as TermodinÃ¢micas}
 \author{Ney Lemke}
 \institute[IBB-UNESP]{%
-    Departamento de Física e Biofísica}
-\date{ 2011}                                
+    BiofÃ­sica e Farmacologia}
+\date{ \today}                                
 
 \colorlet{redshaded}{red!25!bg}
 \colorlet{shaded}{black!25!bg}
@@ -78,52 +79,52 @@
 
 
 
-\section{Introdução}
-\frame{\frametitle{Sistemas Termodinâmicos}
+\section{IntroduÃ§Ã£o}
+\frame{\frametitle{Sistemas TermodinÃ¢micos}
   \begin{itemize}
-  \item Sistema formado por uma grande quantidade de átomos.
-  \item Ausencia de correntes.
-  \item Estacionário.
-  \item Comportamento independente da história.
+  \item Sistema formado por uma grande quantidade de Ã¡tomos.
+  \item AusÃªncia de correntes.
+  \item EstacionÃ¡rio.
+  \item Comportamento independente da histÃ³ria.
   \end{itemize}
 
 }
 
-\frame{\frametitle{Definições}
+\frame{\frametitle{DefiniÃ§Ãµes}
   \begin{description}
   \item[Sistema Aberto] Um sistema aberto pode trocar energia, volume
-    e matéria com o ambiente.
-  \item[Sistema Fechado] Troca energia mas não troca matéria.
-  \item[Sistema Isolado] Não troca nen energia nem matéria.
-  \item[Fronteira Adiabática] Impede a troca de calor entre o sistema e o meio.
+    e matÃ©ria com o ambiente.
+  \item[Sistema Fechado] Troca energia mas nÃ£o troca matÃ©ria.
+  \item[Sistema Isolado] NÃ£o troca nem energia nem matÃ©ria.
+  \item[Fronteira AdiabÃ¡tica] Impede a troca de calor entre o sistema e o meio.
 \end{description}
 }
 
-\frame{\frametitle{Definições}
+\frame{\frametitle{DefiniÃ§Ãµes}
   \begin{description}
-  \item[Fase] É uma parte homogênea de um sistema físico.
-  \item[Sistema Simples] Sistema composto por uma única fase.
+  \item[Fase] Ã‰ uma parte homogÃªnea de um sistema fÃ­sico.
+  \item[Sistema Simples] Sistema composto por uma Ãºnica fase.
   \end{description}
 }
 
 \frame{\frametitle{Propriedades Extensivas}
   \begin{description}
-  \item[Extensiva] Uma propriedade $P$ é dita extensiva se ela for a soma das 
+  \item[Extensiva] Uma propriedade $P$ Ã© dita extensiva se ela for a soma das 
 propriedades $P_i$ de seus subsistemas.
-\item[Intensiva] Uma propriedade é dita intensiva se for obtida pela razão 
-de uma propriedade extensiva e o número de moléculas de um sistema.
-\item[Energia Interna] A energia interna $U$ de  um sistema é extensiva. Para 
-um sistema composto por $N$ partículas a energia é a soma das energias de cada uma das partículas.:
+\item[Intensiva] Uma propriedade Ã© dita intensiva se for obtida pela razÃ£o 
+de uma propriedade extensiva e o nÃºmero de molÃ©culas de um sistema.
+\item[Energia Interna] A energia interna $U$ de um sistema Ã© extensiva. Para 
+um sistema composto por $N$ partÃ­culas a energia Ã© a soma das energias de cada uma das partÃ­culas.:
 
 $$U=\sum_i^t N_i\epsilon_i$$
 
-$N_i$ representa o número de partículas que possuem a energia $\epsilon_i$.
+$N_i$ representa o nÃºmero de partÃ­culas que possuem a energia $\epsilon_i$.
   \end{description}
 }
 
-\section{Equações Fundamentais}
+\section{EquaÃ§Ãµes Fundamentais}
 
-\frame{\frametitle{Equação Termodinâmica Fundamental}
+\frame{\frametitle{EquaÃ§Ã£o TermodinÃ¢mica Fundamental}
 
 $$S=S(U,V,\mathbf{N})$$
 
@@ -134,7 +135,7 @@ $$U=U(S,V,\mathbf{N})$$
 }
 
 
-\frame{\frametitle{Forças Termodinâmicas}
+\frame{\frametitle{ForÃ§as TermodinÃ¢micas}
 %\left( \frac{\partial }{\partial }\right)_{}d
 
 $$dS=\left( \frac{\partial S}{\partial U}\right)_{V,N}dU+
@@ -149,24 +150,24 @@ $$dU=\left( \frac{\partial U}{\partial S}\right)_{V,N}dS+
 }
 
 
-\frame{\frametitle{Forças Termodinâmicas}
+\frame{\frametitle{ForÃ§as TermodinÃ¢micas}
   \begin{description}
   \item[Temperatura]
 $$T=\left( \frac{\partial  U}{\partial S}\right)_{V,\mathbf{N}}$$
-  \item[Pressão]
+  \item[PressÃ£o]
 $$p=-\left( \frac{\partial U}{\partial V}\right)_{S,\mathbf{N}} $$
-  \item[Potencial Químico] 
+  \item[Potencial QuÃ­mico] 
 $$\mu_j=\left( \frac{\partial U}{\partial N_j}\right) $$
   \end{description}
 }
 
-\frame{\frametitle{Forças Termodinâmicas}
+\frame{\frametitle{ForÃ§as TermodinÃ¢micas}
 $$dU=TdS-pdV+\sum_j \mu_j dN_j$$
 
 $$dS=\left(\frac{1}{T}\right) dU+\left(\frac{p}{T} \right)dV-\sum_j\left(  \frac{\mu_j}{T} \right)dN_j$$
 }
 
-\frame{\frametitle{Forças Termodinâmicas}
+\frame{\frametitle{Foras Termodinmicas}
 $$\left(\frac{1}{T}\right)=\left( \frac{\partial S}{\partial U}\right)_{V,N} \quad
 \left( \frac{p}{T} \right)=\left( \frac{\partial S}{\partial V}\right)_{U,N}$$
 
@@ -174,8 +175,8 @@ $$
 \left( \frac{\mu_j}{T}\right)_{S,V,N_{i\neq j}}=\left(\frac{\partial S}{\partial N_j}\right)_{U,V,N_{i\neq j}}$$
 }
 
-\frame{\frametitle{Gas Ideal}
-Considere um sistema formado por $N$ partículas em uma rede linear de tamanho $M$.
+\frame{\frametitle{GÃ¡s Ideal}
+Considere um sistema formado por $N$ partÃ­culas em uma rede linear de tamanho $M$.
 
 $$\frac{S}{k}=\ln W(N,M)=\ln \left( \frac{M!}{N!(N-M)!}\right)$$
 
@@ -207,7 +208,7 @@ $$p=\left( -\frac{MkT}{V}\right) \left( -\frac{N}{M}\right)\left(1+\frac{1}{2}\l
 
 }
 
-\frame{\frametitle{Funções Homogêneas}
+\frame{\frametitle{FunÃ§Ãµes HomogÃªneas}
 $$f(\lambda x_1,\lambda x_2,\ldots , \lambda x_M)=\lambda f(x_1,x_2,\ldots ,x_M)$$
 
 $$\frac{df(\lambda x_1,\lambda x_2,\ldots , \lambda x_M)}{d\lambda}=f(x_1,\ldots,x_M )
@@ -222,19 +223,19 @@ Se $\lambda=1$, temos que:
 $$f=\sum_i x_i \left( \frac{\partial f}{\partial x_i} \right) $$
 }
 
-\frame{\frametitle{Funções Homogêneas}
+\frame{\frametitle{FunÃ§Ãµes HomogÃªneas}
 
 $$U=TS-pV+\sum_i \mu_i N_i$$
 
 }
-\section{Forças Termodinâmicas}
+\section{ForÃ§as TermodinÃ¢micas}
 
 
 \frame{\frametitle{Temperatura e Calor}
 Considere dois sistemas $A$ e $B$ separados por uma parede 
-adiabática. 
+adiabÃ¡tica. 
 
-A Entropia e a Energia Interna do sistema composto é:
+A Entropia e a Energia Interna do sistema composto Ã©:
 
 $$S=S_A+S_B \quad U=U_A+U_B=\mbox{cte}$$ 
 
@@ -256,21 +257,21 @@ $$ \left( \frac{\partial S_A}{\partial U_A}\right)_{V,N}=
 
 }
 
-\frame{\frametitle{Direção da Transmissão de Calor}
+\frame{\frametitle{Direo da Transmisso de Calor}
 $$dS=\left( \frac{1}{T_A}-\frac{1}{T_B} \right) dU_A\geq 0$$
 
-Se $dU_A>0$ então $T_B>T_A$. Ou seja se o objeto $A$ ganha energia sua temperatura é menor. 
+Se $dU_A>0$ entÃ£o $T_B>T_A$. Ou seja se o objeto $A$ ganha energia sua temperatura Ã© menor. 
 O calor flui para o corpo mais frio. 
 }
 
-\frame{\frametitle{Interpretação da Temperatura}
+\frame{\frametitle{Interpretao da Temperatura}
   \begin{center}
     \includegraphics[scale=0.5]{temp}
   \end{center}
-Analogia Financeira: Dinheiro é Energia e Entropia é função Utilidade.
+Analogia Financeira: Dinheiro  Energia e Entropia  funo Utilidade.
 }
 
-\frame{\frametitle{Pressão e Volume}
+\frame{\frametitle{Presso e Volume}
  \begin{center}
     \includegraphics[scale=0.3]{pressao}
   \end{center}
@@ -280,7 +281,7 @@ $$T_A=T_B$$
 
 }
 
- \frame{\frametitle{Pressão e Volume}
+ \frame{\frametitle{Presso e Volume}
 
  $$dS=dS_A+dS_B$$
 $$=\left( \frac{\partial S_A}{\partial V_A}\right)_{U,N}dV_A+\left( \frac{\partial S_B}{\partial V_B}\right)_{U,N}dV_B+$$
@@ -295,14 +296,14 @@ $$\left[ \frac{p_A}{T}-\frac{p_B}{T} \right]=0 \quad p_A=p_B$$
 }
 
 
- \frame{\frametitle{Pressão e Volume}
+ \frame{\frametitle{Presso e Volume}
 $$dS=\left[ \frac{p_A}{T}-\frac{p_B}{T} \right]dV_A\geq 0$$
-Se $dV_A>0$ então $p_A>p_B$ ou seja se o volume aumenta isto ocorre porque $p_A>p_B$.
+Se $dV_A>0$ ento $p_A>p_B$ ou seja se o volume aumenta isto ocorre porque $p_A>p_B$.
 }
 
-\frame{\frametitle{Potencial Químico }
+\frame{\frametitle{Potencial Qumico }
 Suponha que eu possua um sistema formado por dois subsistemas separados
-por uma membrana permeável. Supomos que a pressão e a Temperatura sejam iguais 
+por uma membrana permeÃ¡vel. Supomos que a pressÃ£o e a Temperatura sejam iguais 
 nos dois lados. 
 
 $$dN_A=-dN_B$$
@@ -319,32 +320,32 @@ $$dS=\left(\frac{\mu_B}{T}-\frac{\mu_B}{T}  \right)dN_A$$
 
  \frame{\frametitle{Diferenciais Exatos}
 
-Considere uma função $H(x,y)$:
+Considere uma funÃ§Ã£o $H(x,y)$:
 
 $$dH= \left( \frac{\partial H}{\partial x}\right)_y+
 \left( \frac{\partial H}{\partial y}\right)_x$$
 
-Mas considere a situação reversa, considere o diferencial:
+Mas considere a situao reversa, considere o diferencial:
 
 $$M(x,y)dx+N(x,y)dy$$
 
-Será que existe $G$ tal que $dG$ seja este diferencial?
+Ser que existe $G$ tal que $dG$ seja este diferencial?
 }
 
 \frame{\frametitle{Diferenciais Exatos}
-Em geral não. É condição necessária e suficiente para a existência de $G$ que:
+Em geral nÃ£o. Ã‰ condiÃ§Ã£o necessÃ¡ria e suficiente para a existÃªncia de $G$ que:
 
 $$\left(\frac{\partial M}{\partial y} \right)=\left(\frac{\partial N}{\partial x} \right)$$
 
-Quando um referencial satisfaz essa condição é chamado de diferencial exato. Caso contrário 
-é chamado de diferencial inexato e denotado por
+Quando um referencial satisfaz essa condiÃ§Ã£o Ã© chamado de diferencial exato. Caso contrÃ¡rio 
+Ã© chamado de diferencial inexato e denotado por
 $\delta w$  ou $\dbar w$.
 
 }
 
 
 \frame{\frametitle{Diferenciais Exatos}
-Se temos um diferencial exato então:
+Se temos um diferencial exato ento:
 
 $$\oint dG =0$$
 
@@ -360,24 +361,24 @@ $$\delta w=-pdV$$
 
    \begin{description}
    \item[Volume Constante] $w=0$
-   \item[Pressão Constante] $w=-p\Delta V$
+   \item[Presso Constante] $w=-p\Delta V$
    \item[Temperatura Constante] 
 $$w=-NkT\ln \frac{V_B}{V_A}$$
    \end{description}
  }
 
-\frame{\frametitle{Processo Adiabático}
+\frame{\frametitle{Processo Adiabtico}
 
-Neste processo a Entropia não varia.
+Neste processo a Entropia no varia.
 
 $dU=\delta W$
 
-Suponha um gás ideal. Neste caso temos que 
+Suponha um gs ideal. Neste caso temos que 
 
 $$U=\frac{3}{2} kT \quad pV=NkT$$
 }
 
-\frame{\frametitle{Processo Adiabático}
+\frame{\frametitle{Processo Adiabtico}
 $$\frac{3}{2} Nk dT=-pdV=-\frac{NkT}{V}dV$$
 
 $$\frac{3}{2} \frac{dT}{T}=-\frac{dV}{V}$$
@@ -411,10 +412,10 @@ $$Tds=\delta q$$
 \begin{tabular}{c c}
   \begin{minipage}{0.45\textwidth}
   \begin{itemize}
-  \item Expansão Isotérmica
-  \item Expansão  Adiabática
-  \item Compressão Isotérmica
-  \item Compressão Adiabática
+  \item Expanso Isotrmica
+  \item Expanso  Adiabtica
+  \item Compresso Isotrmica
+  \item Compresso Adiabtica
   \end{itemize}      
     \end{minipage}&
 

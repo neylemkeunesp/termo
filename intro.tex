@@ -11,7 +11,7 @@
 \usepackage[portuges]{babel}
 \usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
 \usepackage{amsmath,amssymb}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 
 \setbeamercovered{dynamic}
@@ -40,11 +40,11 @@
 
 \logo{\pgfuseimage{logo}}
 
-\title{IntroduÁ„o}
+\title{Introdu√ß√£o}
 \author{Ney Lemke}
 \institute[IBB-UNESP]{%
-    Departamento de FÌsica e BiofÌsica}
-\date{ 2011}                                
+    Biof√≠sica e Farmacologia}
+\date{ \today }                                
 
 \colorlet{redshaded}{red!25!bg}
 \colorlet{shaded}{black!25!bg}
@@ -132,7 +132,7 @@
 {%
   \pgfsetlinewidth{0.4pt}
   \color{black}
-  \pgfputat{\pgfxy(0,5)}{\Band{Zwei Eingabeb‰nder}{}}
+  \pgfputat{\pgfxy(0,5)}{\Band{Zwei Eingabeb√§nder}{}}
   \pgfputat{\pgfxy(0,4.25)}{\Band{}{}}
 
   \pgfxyline(0,5)(0,5.5)
@@ -167,7 +167,7 @@
 {%
   \pgfsetlinewidth{0.4pt}
   \color{black}
-  \pgfputat{\pgfxy(0,5)}{\Bandshaded{Zwei Eingabeb‰nder}{}}%
+  \pgfputat{\pgfxy(0,5)}{\Bandshaded{Zwei Eingabebnder}{}}%
   \color{blackshaded}
   \pgfputat{\pgfxy(0,4.25)}{\Bandshaded{}{}}
   \pgfputat{\pgfxy(0.25,4.5)}{\pgfbox[left,center]{$v$}}
@@ -229,37 +229,20 @@
 
 \frame{\frametitle{Esquema do Curso}
   \begin{itemize}
-  \item Revis„o Matem·tica
-  \item PrincÌpios de ExtremizaÁ„o
-  \item Calor, Trabalho e Energia
-  \item Entropia
-  \item ForÁas Termodin‚micas
-  \item Energias Livres
-  \end{itemize}
-} \frame{\frametitle{Esquema do Curso}
-  \begin{itemize}
-  \item RelaÁ’es de Maxwell
-  \item DistribuiÁ„o de Boltzmann
-  \item Gases e SÛlidos
-  \item Capacidade TÈrmica
+  \item Revis√£o Matem√°tica
+  \item Revis√£o de Termodin√¢mica
+  \item Distribui√ß√£o de Boltzmann
+  \item Gases e S√≥lidos
   \end{itemize}
 
-} \frame{\frametitle{Semin·rios}
-  \begin{itemize}
-  \item EquÌbrio QuÌmico
-  \item Difus„o
-  \item SoluÁıes e Misturas
-  \item CinÈtica QuÌmica
-  \item EquilÌbrio EletroquÌmico
-  \item TransiÁıes de Fases
-  \end{itemize}
-}
+} 
 
-\frame{\frametitle{Termodin‚mica}
 
-  Termodin‚mica È uma ciÍncia que visa caraterizar sistemas FÌsicos
-  macroscÛpicos em equilÌbrio com o ambiente.  Ao contr·rio do que o nome 
-indica, situaÁıes ``din‚micas'' n„o est„o no escopo da teoria.
+\frame{\frametitle{Termodin√¢mica}
+
+  Termodin√¢mica √© uma ci√™ncia que visa caraterizar sistemas F√≠sicos
+  macrosc√≥picos em equil√≠brio com o ambiente.  Ao contr√°rio do que o nome 
+indica, situa√ß√µes ``din√¢micas'' n√£o est√£o no escopo da teoria.
 
 }
 
@@ -271,22 +254,22 @@ indica, situaÁıes ``din‚micas'' n„o est„o no escopo da teoria.
   \end{itemize}
 }
 
-\frame{\frametitle{``3'' Leis da Termodin‚mica}
+\frame{\frametitle{``3'' Leis da Termodin√¢mica}
   \begin{itemize}
-  \item Considere trÍs corpos $A$, $B$ e $C$. Se $A$ e $B$ est„o 
-em equilÌbrio, assim como $B$ e $C$ ent„o $A$ e $C$ est„o em equlÌbrio.
-\item A energia È conservada.
-\item A entropia de um sistema isolado nunca diminui. N„o È possÌvel transferir
-calor de um corpo frio para um corpo quente. N„o existe ``free-lunch''.
+  \item Considere tr√™s corpos $A$, $B$ e $C$. Se $A$ e $B$ est√£o 
+em equil√≠brio, assim como $B$ e $C$ ent√£o $A$ e $C$ est√£o em equil√≠brio.
+\item A energia √© conservada.
+\item A entropia de um sistema isolado nunca diminui. N√£o √© poss√≠vel transferir
+calor de um corpo frio para um corpo quente. N√£o existe ``free-lunch''.
 \item A entropia tende a zero quando T tende a zero. 
   \end{itemize}
 }
 
-\frame{\frametitle{Mec‚nica EstatÌstica}
-O objetivo original da Mec‚nica EstatÌstica era fornecer um subsidio Mec‚nico 
-para as leis da Termodin‚mica. Nos primordios a esperanÁa era usar 
-as Leis de Newton para derivar as Leis da Termodin‚mica. Hoje sabe-se que 
-as leis da Termodin‚mica s„o mais gerais que as teorias microscÛpicas. 
+\frame{\frametitle{Mec√¢nica Estat√≠stica}
+O objetivo original da Mec√¢nica Estat√≠stica era fornecer um subsidio Mec√¢nico 
+para as leis da Termodin√¢mica. Nos prim√≥rdios a esperan√ßa era usar 
+as Leis de Newton para derivar as Leis da Termodin√¢mica. Hoje sabe-se que 
+as leis da Termodin√¢mica s√£o mais gerais que as teorias microsc√≥picas. 
 }
 
 
