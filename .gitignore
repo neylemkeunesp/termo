@@ -1,0 +1,53 @@
+## LaTeX
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.dvi
+*.xdv
+*-converted-to.*
+*.pdf
+*.ps
+*.eps
+*.nav
+*.snm
+
+## Core latex/pdflatex auxiliary files
+latex.out/
+*.synctex.gz
+*.synctex(busy)
+*.pdfsync
+
+## Bibliography auxiliary files
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+## Build tool auxiliary files
+*.fdb_latexmk
+*.syntex
+*.syntex(busy)
+*.syntex.gz
+*.syntex.gz(busy)
+*.pdfsync
+
+## macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+## Backup files
+*~
+*.bak
+*.backup
