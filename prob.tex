@@ -14,7 +14,8 @@
 \usepackage[utf8]{inputenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{graphicx}
-
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, calc}
 \setbeamercovered{dynamic}
 
 \newcommand{\Lang}[1]{\operatorname{\text{\textsc{#1}}}}
@@ -343,8 +344,48 @@ $$C_{n,p}=\frac{n!}{p!(n-p)!}$$
 
 \frame{\frametitle{Caminhante Aleatório}
 
-\begin{center}\includegraphics[scale=0.15]{rw}\end{center}
+%\begin{center}\includegraphics[scale=0.15]{rw}\end{center}
+\begin{tikzpicture}[
+    state/.style={circle, draw, minimum size=1cm},
+    transition/.style={->, >=Stealth, bend angle=45}
+]
 
+% Estados
+\node[state] (s0) at (0,0) {0};
+\node[state] (s1) at (2,0) {1};
+\node[state] (s2) at (4,0) {2};
+\node[state] (s3) at (6,0) {3};
+\node[state] (sm1) at (-2,0) {-1};
+\node[state] (sm2) at (-4,0) {-2};
+
+% Transições para a direita (probabilidade p)
+\draw[transition, bend left] (sm2) to node[above] {p} (sm1);
+\draw[transition, bend left] (sm1) to node[above] {p} (s0);
+\draw[transition, bend left] (s0) to node[above] {p} (s1);
+\draw[transition, bend left] (s1) to node[above] {p} (s2);
+\draw[transition, bend left] (s2) to node[above] {p} (s3);
+
+% Transições para a esquerda (probabilidade q)
+\draw[transition, bend left] (s3) to node[below] {q} (s2);
+\draw[transition, bend left] (s2) to node[below] {q} (s1);
+\draw[transition, bend left] (s1) to node[below] {q} (s0);
+\draw[transition, bend left] (s0) to node[below] {q} (sm1);
+\draw[transition, bend left] (sm1) to node[below] {q} (sm2);
+
+% Título e legenda
+\node[above=1cm of s0] {Random Walk Unidimensional};
+\node[below=1.5cm of s0] {
+    \begin{tabular}{l}
+        p: probabilidade de avançar \\
+        q: probabilidade de retroceder \\
+        p + q = 1
+    \end{tabular}
+};
+
+\end{tikzpicture}
+}
+
+\frame{\frametitle{Caminhante Aleatório}
 $N$ Passos
 
 $N_1$ Passos para a frente
@@ -355,31 +396,64 @@ Probabilidade de dar $N_1$ passos para a frente.
 $$W_N(N_1)=\frac{N!}{N_1! (N-N_1)!} p^{N_1} q^{N-N_1}$$
 }
 
-\frame{\frametitle{Caminhante Aleatório}
-Temos que:
-
-$$\sum_{N_1=0}^N W_N(N_1)=\sum_{N_1=0}^N \frac{N!}{N_1! (N-N_1)!} p^{N_1} q^{N-N_1}=(p+q)^N=1$$
-
-É conveniente investigar a posição do caminhante $m=N_1-N_2$. Neste caso
-
-$$W_N(m)=\frac{N!}{\left( \frac{N+m}{2}\right)!\left( \frac{N-m}{2}\right)!} p^{N_1} q^{N-N_1}$$
+%\frame{\frametitle{Caminhante Aleatório}
+%Temos que:
+%
+%$$\sum_{N_1=0}^N W_N(N_1)=\sum_{N_1=0}^N \frac{N!}{N_1! (N-N_1)!} p^{N_1} q^{N-N_1}=(p+q)^N=1$$
+%
+%É conveniente investigar a posição do caminhante $m=N_1-N_2$. Neste caso
+%
+%$$W_N(m)=\frac{N!}{\left( \frac{N+m}{2}\right)!\left( \frac{N-m}{2}\right)!} p^{N_1} q^{N-N_1}$$
+%}
+%
+%\frame{\frametitle{Equação Estocástica}
+%
+%$$P_N(m)=pP_N(m-1)+q P_N(m+1)$$
+%
+%Considere o caso $p=q=1/2$
+%
+%$$\frac{P_{N+\tau}-P_N}{\tau}\sim \frac{\partial P}{\partial t}$$
+%
+%$$\frac{P(ml-l)+P(ml+l)-2 P(ml)}{l^2}\sim \frac{\partial^2 P}{\partial x^2}$$
+%
+%Equação da Difusão:
+%
+%$$\frac{\partial P}{\partial t}=D\frac{\partial^2 P}{\partial x^2}$$
+%}
+\frame{\frametitle{Equação da Difusão}
+A equação da difusão descreve o espalhamento de partículas em um meio devido ao movimento aleatório.
+Pode ser derivada a partir de um modelo estocástico simples.
 }
 
-\frame{\frametitle{Equação Estocástica}
-
-$$P_N(m)=pP_N(m-1)+q P_N(m+1)$$
-
-Considere o caso $p=q=1/2$
-
-$$\frac{P_{N+\tau}-P_N}{\tau}\sim \frac{\partial P}{\partial t}$$
-
-$$\frac{P(ml-l)+P(ml+l)-2 P(ml)}{l^2}\sim \frac{\partial^2 P}{\partial x^2}$$
-
-Equação da Difusão:
-
-$$\frac{\partial P}{\partial t}=D\frac{\partial^2 P}{\partial x^2}$$
+\frame{\frametitle{Modelo Estocástico}
+Considere um sistema unidimensional onde a partícula se move para a direita ou para a esquerda com probabilidades iguais:
+\begin{equation}
+P_N(m) = \frac{1}{2} P_N(m-1) + \frac{1}{2} P_N(m+1)
+\end{equation}
 }
 
+\frame{\frametitle{Aproximação Contínua no Tempo}
+\begin{equation}
+\frac{P_{N+\tau} - P_N}{\tau} \approx \frac{\partial P}{\partial t}
+\end{equation}
+}
+
+\frame{\frametitle{Aproximação Contínua no Espaço}
+\begin{equation}
+\frac{P(x-l) + P(x+l) - 2P(x)}{l^2} \approx \frac{\partial^2 P}{\partial x^2}
+\end{equation}
+}
+
+\frame{\frametitle{Equação da Difusão}
+Combinando as aproximações temporais e espaciais:
+\begin{equation}
+\frac{\partial P}{\partial t} = D \frac{\partial^2 P}{\partial x^2}
+\end{equation}
+Onde o coeficiente de difusão é dado por:
+\begin{equation}
+D = \frac{l^2}{2\tau}
+\end{equation}
+}
 \frame{\frametitle{Valores Médios}
 Seja $u_j$ uma variável estocástica que pode assumir $N$ valores.
 
