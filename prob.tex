@@ -15,6 +15,7 @@
 %\usepackage[latin1]{inputenc}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{cancel}
 \usetikzlibrary{arrows.meta, positioning, calc}
 \setbeamercovered{dynamic}
 
@@ -408,13 +409,13 @@ $$W_N(N_1)=\frac{N!}{N_1! (N-N_1)!} p^{N_1} q^{N-N_1}$$
 %
 %\frame{\frametitle{Equação Estocástica}
 %
-%$$P_N(m)=pP_N(m-1)+q P_N(m+1)$$
+%$$P_N(m)=pP_{N-1}(m-1)+q P_{N-1}(m+1)$$
 %
 %Considere o caso $p=q=1/2$
 %
 %$$\frac{P_{N+\tau}-P_N}{\tau}\sim \frac{\partial P}{\partial t}$$
 %
-%$$\frac{P(ml-l)+P(ml+l)-2 P(ml)}{l^2}\sim \frac{\partial^2 P}{\partial x^2}$$
+%$$\frac{P_N(ml-l)+P_N(ml+l)-2 P_N(ml)}{l^2}\sim \frac{\partial^2 P}{\partial x^2}$$
 %
 %Equação da Difusão:
 %
@@ -428,19 +429,37 @@ Pode ser derivada a partir de um modelo estocástico simples.
 \frame{\frametitle{Modelo Estocástico}
 Considere um sistema unidimensional onde a partícula se move para a direita ou para a esquerda com probabilidades iguais:
 \begin{equation}
-P_N(m) = \frac{1}{2} P_N(m-1) + \frac{1}{2} P_N(m+1)
+P_N(m) = \frac{1}{2} P_{N-1}(m-1) + \frac{1}{2} P_{N-1}(m+1)
 \end{equation}
 }
 
+\frame{\frametitle{Equação da Difusão}
+
+
+\begin{center}
+\includegraphics[scale=0.5]{eqdifusao.png}
+\end{center}
+
+}
+
 \frame{\frametitle{Aproximação Contínua no Tempo}
+
+
 \begin{equation}
-\frac{P_{N+\tau} - P_N}{\tau} \approx \frac{\partial P}{\partial t}
+P_N(m) - P_{N-1}(m)= \frac{1}{2} P_{N-1}(m-1) + \frac{1}{2} P_{N-1}(m+1)-P_{N-1}(m)
+\end{equation}
+
+\begin{equation}
+  x=m\times l \quad t=N\times \tau 
+\end{equation}
+\begin{equation}
+\frac{P_{N} - P_{N-1}}{\tau} \approx \frac{\partial P}{\partial t}
 \end{equation}
 }
 
 \frame{\frametitle{Aproximação Contínua no Espaço}
 \begin{equation}
-\frac{P(x-l) + P(x+l) - 2P(x)}{l^2} \approx \frac{\partial^2 P}{\partial x^2}
+\frac{P_N(m-1) + P_N(m+1) - 2P_N(m)}{l^2} \approx \frac{\partial^2 P}{\partial x^2}
 \end{equation}
 }
 
@@ -454,6 +473,8 @@ Onde o coeficiente de difusão é dado por:
 D = \frac{l^2}{2\tau}
 \end{equation}
 }
+
+
 \frame{\frametitle{Valores Médios}
 Seja $u_j$ uma variável estocástica que pode assumir $N$ valores.
 
@@ -497,19 +518,215 @@ $$\frac{\Delta N_1}{\langle N_1\rangle }=\sqrt{\frac{q}{pN}}$$
 \begin{center}\includegraphics[scale=0.1]{lln.png}\end{center}
 
 }
+\begin{frame}
+\frametitle{Introdução à Fórmula de Stirling}
+\begin{itemize}
+\item Aproximação assintótica para fatoriais:
+\[ N! \approx \sqrt{2\pi N} \left( \frac{N}{e} \right)^N \]
+\item Forma logarítmica:
+\[ \ln N! \approx N \ln N - N + \frac{1}{2} \ln N + \ln \sqrt{2\pi} \]
+\item Aplicações: termodinâmica, mecânica estatística, teoria das probabilidades.
+\end{itemize}
+\end{frame}
 
 
-\frame{\frametitle{Aproximação de Stirling}
+\begin{frame}{Introdução}
+  \begin{itemize}
+    \item Começamos com a definição:
+      \[
+      \ln N! = \sum_{k=1}^{N} \ln k.
+      \]
+    \item Nosso objetivo é obter uma aproximação assintótica para $\ln N!$, que, ao ser exponenciada, fornecerá a famosa fórmula:
+      \[
+      N! \sim \sqrt{2\pi N}\, N^N e^{-N}.
+      \]
+  \end{itemize}
+\end{frame}
 
-$$\ln N!=\ln 1+\ldots \ln N\sim \int_1^N \ln x\, d x=N \ln N -N +1\sim N\ln N -N $$
+\begin{frame}{Aproximação pela Integral}
+  \begin{itemize}
+    \item Uma aproximação inicial é substituir a soma por uma integral:
+      \[
+      \sum_{k=1}^{N} \ln k \approx \int_{1}^{N} \ln x\,dx.
+      \]
+    \item Calculando a integral:
+      \[
+      \int_{1}^{N} \ln x\,dx = \left[ x\ln x - x \right]_1^N = N\ln N - N + 1.
+      \]
+    \item Assim, temos:
+      \[
+      \ln N! \sim N\ln N - N.
+      \]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Aprimoramento via Euler-Maclaurin}
+  \begin{itemize}
+    \item Para refinar a aproximação, utilizamos a fórmula de Euler-Maclaurin:
+      \[
+      \sum_{k=a}^{b} f(k) \approx \int_{a}^{b} f(x)\,dx + \frac{f(a)+f(b)}{2} + \cdots.
+      \]
+    \item Para $f(x)=\ln x$, obtemos:
+      \[
+      \ln N! \approx \int_{1}^{N} \ln x\,dx + \frac{\ln 1 + \ln N}{2} + \cdots.
+      \]
+    \item Como $\ln 1=0$, isso se simplifica para:
+      \[
+      \ln N! \approx N\ln N - N + 1 + \frac{1}{2}\ln N + \cdots.
+      \]
+
+  \end{itemize}
+\end{frame}
+      
+\begin{frame}{Aprimoramento via Euler-Maclaurin}
+  \begin{itemize}
+    \item Ajustando a constante (e considerando termos de ordem superior), chega-se à forma:
+      \[
+      \ln N! \sim N\ln N - N + \frac{1}{2}\ln(2\pi N).
+      \]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Fórmula de Stirling}
+  \begin{itemize}
+    \item Exponenciando ambos os lados, obtemos:
+      \[
+      N! \sim \sqrt{2\pi N}\, N^N e^{-N}.
+      \]
+    \item Esta é a famosa Fórmula de Stirling, amplamente utilizada em estatística, física e teoria dos números.
+  \end{itemize}
+\end{frame}
 
 
-ou ainda 
 
-$$N!\sim \sqrt{2\pi N}\left( \frac{N}{e} \right)^N$$
+\begin{frame}
+\frametitle{Método de Laplace: Intuição Geométrica}
+\begin{itemize}
+\item Propósito: Avaliar integrais do tipo
+\[ \int_a^b e^{M f(x)} dx \quad (M \gg 1) \]
+\item Ideia-chave: O integrando é dominado por uma região estreita em torno do máximo de \( f(x) \).
 
-\begin{center}\includegraphics[scale=0.1]{stirling.png}\end{center}
-}
+\item Passos principais:
+\begin{enumerate}
+\item Localizar o ponto de máximo \( x = c \).
+\item Expandir \( f(x) \) em série de Taylor até segunda ordem.
+\item Reduzir o integral a um gaussiano.
+\end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Aplicação à Função Gama}
+\begin{itemize}
+\item Representação integral do fatorial:
+\[ N! = \int_0^\infty x^N e^{-x} dx \]
+\item Reescrevendo o integrando:
+\[
+N! = \int_0^\infty e^{N \ln x - x} dx = \int_0^\infty e^{M f(x)} dx
+\]
+onde \( M = N \), \( f(x) = \ln x - \frac{x}{N} \).
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \includegraphics[scale=0.5]{laplace.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Passo 1: Encontrar o Máximo}
+\begin{itemize}
+\item Derivada primeira:
+\[ f'(x) = \frac{1}{x} - \frac{1}{N} \]
+\item Ponto crítico: \( x_c = N \)
+\item Derivada segunda no máximo:
+\[ f''(N) = -\frac{1}{N^2} \quad (< 0 \Rightarrow \text{máximo}) \]
+\end{itemize}
+\begin{center}
+    \textit{A função tem um pico estreito em \( x = N \).}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Passo 2: Expansão de Taylor}
+\begin{itemize}
+\item Expandir \( f(x) \) em torno de \( x = N \):
+\[
+f(x) \approx f(N) + \cancelto{0}{f'(N)(x-N)} + \frac{f''(N)}{2}(x-N)^2
+\]
+\[
+f(x) \approx \ln N - 1 - \frac{(x-N)^2}{2N^2}
+\]
+\item Fator exponencial dominante:
+\[
+e^{N f(x)} \approx e^{N (\ln N - 1)} e^{-\frac{(x-N)^2}{2N}}
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Passo 3: Substituição de Variáveis}
+\begin{itemize}
+\item Nova variável adimensional:
+\[ t = \frac{x - N}{\sqrt{N}} \quad \Rightarrow \quad dx = \sqrt{N} dt \]
+\item Limites de integração:
+\[ x = 0 \Rightarrow t = -\sqrt{N} \quad (\text{desprezível para } N \gg 1) \]
+\[ \int_0^\infty \to \int_{-\infty}^\infty \text{ para aproximação} \]
+\item Integral transformada:
+\[
+N! \approx e^{N \ln N - N} \sqrt{N} \int_{-\infty}^\infty e^{-t^2/2} dt
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Passo 4: Integral Gaussiana}
+\begin{itemize}
+\item Identidade fundamental:
+\[ \int_{-\infty}^\infty e^{-t^2/2} dt = \sqrt{2\pi} \]
+\item Resultado final:
+\[
+N! \approx e^{N \ln N - N} \sqrt{N} \cdot \sqrt{2\pi}
+\]
+\[
+N! \approx \sqrt{2\pi N} \left( \frac{N}{e} \right)^N
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \includegraphics[scale=0.5]{stirling.png}
+\end{frame}
+\begin{frame}
+\frametitle{Conclusão e Observações}
+\begin{itemize}
+\item Método de Laplace captura: 
+\begin{itemize}
+\item Termo dominante \( \left( \frac{N}{e} \right)^N \)
+\item Correção subdominante \( \sqrt{2\pi N} \)
+\end{itemize}
+
+\item Erro relativo decai como \( \mathcal{O}(1/N) \)
+\item Generalizações:
+\begin{itemize}
+\item Expansões de ordem superior (Wallis, Euler-Maclaurin)
+\item Aplicações em sistemas com muitos graus de liberdade
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+%\frame{\frametitle{Aproximação de Stirling}
+%
+%$$\ln N!=\ln 1+\ldots \ln N\sim \int_1^N \ln x\, d x=N \ln N -N +1\sim N\ln N -N $$
+%
+%
+%ou ainda 
+%
+%$$N!\sim \sqrt{2\pi N}\left( \frac{N}{e} \right)^N$$
+%
+%\begin{center}\includegraphics[scale=0.1]{stirling.png}\end{center}
+%}
 
 \frame{\frametitle{Limite Gaussiano}
 
