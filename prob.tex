@@ -428,6 +428,346 @@ $$p(A\cap B)=p(B|A)p(A)=p(A|B)p(B)$$
 \end{center}
 
 }
+% Slide 1: Título
+\begin{frame}
+\frametitle{Teorema de Bayes: Fundamentos e Aplicações}
+\begin{center}
+\Large{Uma abordagem intuitiva do raciocínio probabilístico}
+\end{center}
+\end{frame}
+
+% Slide 2: Definição do Teorema de Bayes
+\begin{frame}
+\frametitle{O Teorema de Bayes: Definição}
+\begin{block}{Fórmula do Teorema de Bayes}
+\begin{equation*}
+P(A|B) = \frac{P(B|A) \times P(A)}{P(B)}
+\end{equation*}
+\end{block}
+
+\begin{itemize}
+\item $P(A|B)$ = Probabilidade de A dado que B ocorreu (posterior)
+\item $P(B|A)$ = Probabilidade de B dado que A ocorreu (verossimilhança)
+\item $P(A)$ = Probabilidade a priori de A
+\item $P(B)$ = Probabilidade total de B (evidência)
+\end{itemize}
+
+\begin{block}{Lei da Probabilidade Total}
+\begin{equation*}
+P(B) = P(B|A) \times P(A) + P(B|\neg A) \times P(\neg A)
+\end{equation*}
+\end{block}
+\end{frame}
+
+% Slide 3: Interpretação Intuitiva
+\begin{frame}
+\frametitle{Interpretação Intuitiva}
+\begin{center}
+\textbf{O Teorema de Bayes é uma forma de atualizar crenças}
+\end{center}
+
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\textbf{Antes da Evidência:}
+\begin{itemize}
+\item Informação inicial ($P(A)$)
+\item Baseada em conhecimento prévio
+\item "Prior"
+\end{itemize}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\textbf{Depois da Evidência:}
+\begin{itemize}
+\item Crença atualizada ($P(A|B)$)
+\item Incorpora novas informações
+\item "Posterior"
+\end{itemize}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{center}
+\textbf{A atualização depende da força da evidência}
+\end{center}
+\end{frame}
+
+% Slide 4: Exemplo 1 - Problema do Teste Médico
+\begin{frame}
+\frametitle{Exemplo 1: Teste Médico}
+\begin{block}{Cenário}
+\begin{itemize}
+\item Doença rara: prevalência de 1\% na população
+\item Teste com sensibilidade de 95\% (P(Teste+|Doença) = 0,95)
+\item Teste com especificidade de 90\% (P(Teste-|Sem Doença) = 0,90)
+\end{itemize}
+\end{block}
+
+\begin{alertblock}{Pergunta}
+Se uma pessoa testa positivo, qual a probabilidade dela realmente ter a doença?
+\end{alertblock}
+
+\begin{itemize}
+\item Queremos calcular: $P(\text{Doença}|\text{Teste+})$
+\item A intuição pode nos enganar: isto NÃO é igual à sensibilidade do teste!
+\end{itemize}
+\end{frame}
+
+% Slide 5: Solução do Exemplo 1
+\begin{frame}
+\frametitle{Exemplo 1: Aplicando o Teorema de Bayes}
+\begin{align*}
+P(D|T+) &= \frac{P(T+|D) \times P(D)}{P(T+)} \\[10pt]
+P(T+) &= P(T+|D) \times P(D) + P(T+|\neg D) \times P(\neg D) \\
+&= 0,95 \times 0,01 + 0,10 \times 0,99 \\
+&= 0,0095 + 0,099 \\
+&= 0,1085 \\[10pt]
+P(D|T+) &= \frac{0,95 \times 0,01}{0,1085} \\
+&= \frac{0,0095}{0,1085} \\
+&\approx 0,0876 \approx 8,76\%
+\end{align*}
+\end{frame}
+
+% Slide 6: Visualização do Exemplo 1
+\begin{frame}
+\frametitle{Visualização do Exemplo 1}
+\begin{tikzpicture}[scale=0.95, transform shape]
+% Definição de estilos
+\tikzset{
+    box/.style={rectangle, draw, thick, minimum height=1.5cm, text width=3.5cm, align=center, font=\small},
+    population/.style={rectangle, draw, thick, minimum height=5.0cm, minimum width=12cm, fill=blue!10, draw=blue!50},
+    disease/.style={rectangle, draw, thick, fill=red!30, draw=red!50},
+    no_disease/.style={rectangle, draw, thick, fill=green!30, draw=green!50},
+    positive/.style={rectangle, draw, thick, fill=orange!40, draw=orange!60},
+    negative/.style={rectangle, draw, thick, fill=blue!20, draw=blue!40},
+    true_positive/.style={rectangle, draw, thick, fill=red!60, draw=red!80},
+    false_negative/.style={rectangle, draw, thick, fill=red!20, draw=red!40},
+    false_positive/.style={rectangle, draw, thick, fill=green!50, draw=green!70},
+    true_negative/.style={rectangle, draw, thick, fill=green!20, draw=green!40},
+    annotation/.style={->, >=latex, thick}
+}
+
+% Definição das variáveis para os cálculos
+\def\prevalencia{0.01}
+\def\sensibilidade{0.95}
+\def\especificidade{0.90}
+\def\falsoPositivo{0.10}
+
+% Cálculos derivados
+\def\doenca{\prevalencia}
+\def\semDoenca{1-\prevalencia}
+\def\testePositivoDadoDoenca{\sensibilidade}
+\def\testeNegativoDadoDoenca{1-\sensibilidade}
+\def\testePositivoDadoSemDoenca{\falsoPositivo}
+\def\testeNegativoDadoSemDoenca{\especificidade}
+
+% Cálculo das áreas proporcionais
+\def\larguraTotal{12}
+\def\alturaTotal{5}
+\def\larguraDoenca{\larguraTotal*\prevalencia}
+\def\larguraSemDoenca{\larguraTotal*\semDoenca}
+\def\larguraVP{\larguraDoenca*\sensibilidade}
+\def\larguraFN{\larguraDoenca*\testeNegativoDadoDoenca}
+\def\larguraFP{\larguraSemDoenca*\testePositivoDadoSemDoenca}
+\def\larguraVN{\larguraSemDoenca*\testeNegativoDadoSemDoenca}
+
+% Base - População total
+\node[population] (populacao) at (6,2.5) {};
+\node[font=\bfseries] at (6,5.5) {População Total (100\%)};
+
+% Divisão da população entre doentes e não doentes
+\node[disease] (doentes) at (\larguraDoenca/2,2.5) [minimum width=\larguraDoenca cm, minimum height=5cm] {};
+\node[no_disease] (nao_doentes) at (\larguraDoenca+\larguraSemDoenca/2,2.5) [minimum width=\larguraSemDoenca cm, minimum height=5cm] {};
+
+\node[font=\small\bfseries, text=white] at (\larguraDoenca/2,4) {Com Doença};
+\node[font=\small\bfseries] at (\larguraDoenca/2,3.5) {(1\%)};
+
+\node[font=\small\bfseries] at (\larguraDoenca+\larguraSemDoenca/2,4) {Sem Doença};
+\node[font=\small\bfseries] at (\larguraDoenca+\larguraSemDoenca/2,3.5) {(99\%)};
+
+% Divisão horizontal para testes positivos e negativos (metade superior e inferior)
+\draw[dashed] (0,2.5) -- (\larguraTotal,2.5);
+\node[font=\small\bfseries] at (-1.2,3.75) {Resultado\\do Teste};
+\node[font=\small\bfseries] at (-1.2,1.25) {Realidade\\Clínica};
+
+% Resultados dos testes dentro do grupo com doença
+\node[true_positive] (vp) at (\larguraVP/2,3.75) [minimum width=\larguraVP cm, minimum height=2.5cm] {};
+\node[false_negative] (fn) at (\larguraVP+\larguraFN/2,3.75) [minimum width=\larguraFN cm, minimum height=2.5cm] {};
+
+\node[font=\small\bfseries, text=white] at (\larguraVP/2,4.5) {Verdadeiro};
+\node[font=\small\bfseries, text=white] at (\larguraVP/2,4.1) {Positivo};
+\node[font=\small\bfseries, text=white] at (\larguraVP/2,3.7) {(0,95\%)};
+
+\node[font=\small\bfseries] at (\larguraVP+\larguraFN/2,4.5) {Falso};
+\node[font=\small\bfseries] at (\larguraVP+\larguraFN/2,4.1) {Negativo};
+\node[font=\small\bfseries] at (\larguraVP+\larguraFN/2,3.7) {(0,05\%)};
+
+% Resultados dos testes dentro do grupo sem doença
+\node[false_positive] (fp) at (\larguraDoenca+\larguraFP/2,3.75) [minimum width=\larguraFP cm, minimum height=2.5cm] {};
+\node[true_negative] (vn) at (\larguraDoenca+\larguraFP+\larguraVN/2,3.75) [minimum width=\larguraVN cm, minimum height=2.5cm] {};
+
+\node[font=\small\bfseries] at (\larguraDoenca+\larguraFP/2,4.5) {Falso};
+\node[font=\small\bfseries] at (\larguraDoenca+\larguraFP/2,4.1) {Positivo};
+\node[font=\small\bfseries] at (\larguraDoenca+\larguraFP/2,3.7) {(9,9\%)};
+
+\node[font=\small\bfseries] at (\larguraDoenca+\larguraFP+\larguraVN/2,4.5) {Verdadeiro};
+\node[font=\small\bfseries] at (\larguraDoenca+\larguraFP+\larguraVN/2,4.1) {Negativo};
+\node[font=\small\bfseries] at (\larguraDoenca+\larguraFP+\larguraVN/2,3.7) {(89,1\%)};
+
+% Total de testes positivos (VP + FP)
+\draw[thick, red, dashed] (0,1) -- (\larguraVP,1) -- (\larguraVP,0) -- (\larguraDoenca+\larguraFP,0) -- (\larguraDoenca+\larguraFP,1) -- (\larguraTotal,1);
+\node[font=\bfseries, red] at (5.5,-0.5) {Todos os Testes Positivos (10,85\%)};
+
+% Anotações sobre o Valor Preditivo Positivo (VPP)
+\draw[annotation, red] (2.5,-0.5) -- (0.5,1);
+\node[align=center, font=\small\bfseries, red] at (2.5,-1.2) {VP / (VP + FP) = 0,95\% / 10,85\% $\approx$ 8,76\%};
+\node[align=center, font=\small\bfseries, red] at (2.5,-1.8) {Valor Preditivo Positivo (VPP)};
+
+% Legenda
+\node[box, disease] at (15,4.5) {Pessoas com\\a doença (1\%)};
+\node[box, no_disease] at (15,3) {Pessoas sem\\a doença (99\%)};
+\node[box, true_positive] at (15,1.5) {Verdadeiro Positivo\\(Teste+ e Doença)};
+\node[box, false_positive] at (15,0) {Falso Positivo\\(Teste+ mas sem Doença)};
+
+% Título
+\node[font=\LARGE\bfseries] at (6,7) {Visualização do Teorema de Bayes: Teste Médico};
+\node[font=\large] at (6,6.3) {Prevalência: 1\% | Sensibilidade: 95\% | Especificidade: 90\%};
+
+\end{tikzpicture}
+%\begin{center}
+%\includegraphics[width=0.95\textwidth]{bayes_teste_medico.png}
+
+%\vspace{0.3cm}
+%\small{Apenas 8,76\% dos testes positivos correspondem a pessoas realmente doentes}
+%\end{center}
+\end{frame}
+
+% Slide 7: Explicação do Resultado Contra-intuitivo
+\begin{frame}
+\frametitle{Por que o resultado é tão baixo?}
+\begin{block}{O paradoxo da taxa de base (Base Rate Fallacy)}
+Nossa intuição frequentemente ignora a prevalência (taxa de base) da condição.
+\end{block}
+
+\begin{itemize}
+\item Em uma população de 1000 pessoas:
+  \begin{itemize}
+  \item 10 pessoas têm a doença (1\%)
+  \item Destas, 9 ou 10 terão teste positivo (95\% de 10)
+  \item Das 990 pessoas sem a doença, 99 terão falso positivo (10\% de 990)
+  \item Total de testes positivos: 9 + 99 = 108
+  \item Verdadeiros positivos: 9 de 108 $\approx$ 8,3\%
+  \end{itemize}
+\item O baixo valor preditivo deve-se à doença ser muito rara
+\item Se a doença fosse comum (ex: 30\%), o resultado seria muito diferente
+\end{itemize}
+\end{frame}
+
+% Slide 8: Exemplo 2 - Filtro de Spam
+\begin{frame}
+\frametitle{Exemplo 2: Filtro de Spam}
+\begin{block}{Cenário}
+\begin{itemize}
+\item 70\% dos emails são spam: $P(Spam) = 0,7$
+\item A palavra "oferta" aparece em 60\% dos spams: $P(oferta|Spam) = 0,6$
+\item A palavra "oferta" aparece em 5\% dos emails normais: $P(oferta|Normal) = 0,05$
+\end{itemize}
+\end{block}
+
+\begin{alertblock}{Pergunta}
+Se um email contém a palavra "oferta", qual a probabilidade dele ser spam?
+\end{alertblock}
+
+\begin{align*}
+P(Spam|oferta) &= \frac{P(oferta|Spam) \times P(Spam)}{P(oferta)} \\[8pt]
+P(oferta) &= P(oferta|Spam) \times P(Spam) + P(oferta|Normal) \times P(Normal) \\
+&= 0,6 \times 0,7 + 0,05 \times 0,3 \\
+&= 0,42 + 0,015 = 0,435 \\[8pt]
+P(Spam|oferta) &= \frac{0,6 \times 0,7}{0,435} \approx 0,966 = 96,6\%
+\end{align*}
+\end{frame}
+
+% Slide 9: Atualização Bayesiana
+\begin{frame}
+\frametitle{Atualização Bayesiana com Múltiplas Evidências}
+\begin{block}{Atualização Iterativa}
+O posterior de uma etapa se torna o prior da próxima etapa.
+\end{block}
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Etapa} & \textbf{Palavra} & \textbf{P(Palavra|Spam)} & \textbf{P(Palavra|Normal)} & \textbf{P(Spam)} \\
+\hline
+Inicial & -- & -- & -- & 50,0\% \\
+\hline
+1 & oferta & 60\% & 5\% & 96,6\% \\
+\hline
+2 & grátis & 80\% & 10\% & 99,1\% \\
+\hline
+3 & dinheiro & 70\% & 3\% & 99,9\% \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item Começamos com P(Spam) = 50\% (probabilidade neutra)
+\item Cada nova palavra atualiza nossa crença
+\item A certeza aumenta com mais evidências
+\end{itemize}
+\end{frame}
+
+% Slide 10: Aplicações do Teorema de Bayes
+\begin{frame}
+\frametitle{Aplicações do Teorema de Bayes}
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\textbf{Aplicações Técnicas:}
+\begin{itemize}
+\item Aprendizado de máquina
+\item Classificadores Naive Bayes
+\item Filtros de spam
+\item Sistemas de recomendação
+\item Processamento de linguagem natural
+\item Visão computacional
+\end{itemize}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\textbf{Aplicações Práticas:}
+\begin{itemize}
+\item Diagnósticos médicos
+\item Análise de risco
+\item Geofísica e exploração
+\item Sistemas de apoio à decisão
+\item Inferência sobre eventos históricos
+\item Detecção de fraudes
+\end{itemize}
+\end{column}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{center}
+\textbf{O raciocínio bayesiano está presente em quase toda tecnologia de IA moderna}
+\end{center}
+\end{frame}
+
+% Slide 11: Conclusão
+\begin{frame}
+\frametitle{Conclusão: O Poder do Teorema de Bayes}
+\begin{itemize}
+\item O Teorema de Bayes permite \textbf{atualizar crenças} com novas evidências
+\item Fornece um framework matemático para \textbf{raciocínio sob incerteza}
+\item Ajuda a evitar \textbf{falácias intuitivas} em probabilidade
+\item É \textbf{versátil} - aplicável a problemas simples e complexos
+\item Forma a base para \textbf{estatística bayesiana} e muitos algoritmos de IA
+\end{itemize}
+
+\begin{block}{Mensagem principal}
+O Teorema de Bayes não é apenas uma fórmula matemática, mas uma forma de pensar sobre o mundo, combinando conhecimento prévio com novas observações.
+\end{block}
+\end{frame}
+
 \section{Análise Combinatória}
 
 \frame{\frametitle{Análise Combinatória}
