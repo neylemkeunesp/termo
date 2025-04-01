@@ -74,7 +74,7 @@
     Departamento de Biofísica e Farmacologia}
 \date{\today}
 
-\AtBeginSection[]{\frame{\frametitle{Outline}\tableofcontents[current]}}
+%\AtBeginSection[]{\frame{\frametitle{Outline}\tableofcontents[current]}}
 
 \begin{document}
 
@@ -111,8 +111,8 @@
 \frametitle{A Técnica dos Multiplicadores de Lagrange}
 \begin{tikzpicture}[
   scale=0.1,
-  node distance=.6cm and .5cm,
-  box/.style={rectangle, rounded corners, draw=gray, fill=black!80, text width=10cm, minimum height=.6cm, text centered, font=\small\color{white}},
+  node distance=.4cm and .3cm,
+  box/.style={rectangle, rounded corners, draw=gray, fill=black!80, text width=10cm, minimum height=.3cm, text centered, font=\small\color{white}},
   arrow/.style={draw=black, thick, -{Latex[length=3mm, width=2mm]}}
 ]
 
@@ -154,14 +154,14 @@
 
 \section{Exemplo}
 
-\begin{frame}
-\frametitle{Exemplo: Maximização da Área de um Retângulo}
-\begin{itemize}
-    \item Função objetivo: $f(x,y) = xy$ (área)
-    \item Restrição: $g(x,y) = 2x + 2y = P$ (perímetro)
-    \item Lagrangiana: $L(x,y,\lambda) = xy - \lambda(2x + 2y - P)$
-\end{itemize}
-\end{frame}
+%\begin{frame}
+%\frametitle{Exemplo: Maximização da Área de um Retângulo}
+%\begin{itemize}
+    %\item Função objetivo: $f(x,y) = xy$ (área)
+    %\item Restrição: $g(x,y) = 2x + 2y = P$ (perímetro)
+    %\item Lagrangiana: $L(x,y,\lambda) = xy - \lambda(2x + 2y - P)$
+%\end{itemize}
+%\end{frame}
 
 \begin{frame}
 \frametitle{Desenvolvimento do Exemplo: Passo 1}
@@ -218,18 +218,32 @@ $x = y = \frac{P}{4}$ (quadrado)
 \begin{frame}
 \frametitle{Desenvolvimento do Exemplo: Passo 4}
 \large
-\begin{block}{Verificação da Solução}
-Para verificar que a solução é um máximo, podemos:
-\begin{itemize}
-\item Calcular a matriz Hessiana da Lagrangiana
-\item Verificar as condições de segunda ordem
-\end{itemize}
+\begin{block}{Análise da Matriz Hessiana}
+A matriz Hessiana da Lagrangiana é:
+\begin{align*}
+H(L) = 
+\begin{pmatrix}
+\frac{\partial^2 L}{\partial x^2} & \frac{\partial^2 L}{\partial x \partial y} \\
+\frac{\partial^2 L}{\partial y \partial x} & \frac{\partial^2 L}{\partial y^2}
+\end{pmatrix} =
+\begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix}
+\end{align*}
 \end{block}
+\end{frame}
 
-\begin{block}{Interpretação Geométrica}
+
+\begin{frame}
+\frametitle{Desenvolvimento do Exemplo: Passo 4}
+Para verificar as condições de segunda ordem, analisamos o comportamento de $H(L)$ no espaço tangente à restrição.
+
+\begin{block}{Verificação do Ponto Crítico}
 \begin{itemize}
-\item Entre todos os retângulos com o mesmo perímetro $P$, o quadrado tem a maior área
-\item Área máxima: $A = x \cdot y = \frac{P}{4} \cdot \frac{P}{4} = \frac{P^2}{16}$
+\item Determinante: $\det(H) = -1 < 0$, indicando um ponto de sela da Lagrangiana
+\item No espaço tangente à restrição: a forma quadrática é definida negativa
+\item Conclusão: o ponto $(x,y) = (\frac{P}{4}, \frac{P}{4})$ é um máximo local
 \end{itemize}
 \end{block}
 \end{frame}
