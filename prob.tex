@@ -231,7 +231,7 @@
 %\section*{Outline}
 
 \part{Parte I}
-\frame{\frametitle{Outline}\tableofcontents[part=1]}
+%\frame{\frametitle{Outline}\tableofcontents[part=1]}
 \section{Probabilidades}
 \frame{\frametitle{Probabilidade}
 Seja um conjunto $U$ com $N$ elementos seja um subconjunto $A$ com $n_A$ 
@@ -421,54 +421,84 @@ $\frac{11}{36} \approx 30,6\%$
 
 \frame{\frametitle{Probabilidade Condicional}
 
-$p(B|A)$ denotada a probabilidade de ocorrência de $B$ dado que $A$ ocorreu.
+%$p(B|A)$ denota a probabilidade de ocorrência de $B$ dado que $A$ ocorreu.
 
-Esta probabilidade pode ser calculada usando o teorema de Bayes:
+%%Esta probabilidade pode ser calculada usando o teorema de Bayes:
 
-$$p(A\cap B)=p(B|A)p(A)=p(A|B)p(B)$$
+%$$p(A\cap B)=p(B|A)p(A)=p(A|B)p(B)$$
 
-%\begin{center}
-%\includegraphics[scale=0.5]{intersec.png}
-%\end{center}
- \begin{tikzpicture}[scale=.7]
-    % Fundo preto
-    \fill[black] (-2,-1.5) rectangle (7,4);
-    
+\begin{center}
+\begin{tikzpicture}[scale=.5]
+    % Fundo preto ajustado (expandido)
+    \fill[black] (-4,-2.5) rectangle (7.5,4);
+
     % Retângulo principal (espaço amostral)
     \draw[white, very thick] (0,0) rectangle (6,3);
-    
+
     % Divisão interna do retângulo
     \draw[white, very thick] (3,0) -- (3,3);
-    \draw[white, very thick] (3,1.5) -- (6,1.5);
-    
+    \draw[white, very thick] (0,1.5) -- (6,1.5);
+
     % Preenchimento das áreas
     \fill[lightgray] (0,1.5) rectangle (3,3);
     \fill[lightblue] (0,0) rectangle (3,1.5);
     \fill[darkgray] (3,1.5) rectangle (6,3);
     \fill[darkblue] (3,0) rectangle (6,1.5);
-    
+
     % Rótulos P(E|H)
-    \node[white] at (-0.7,1.5) {$P(E|H) \left\{\begin{array}{c} \\ \\ \end{array}\right.$};
-    
+    \node[white] at (-1.2,0.7) {$P(E|H) \left\{\begin{array}{c} \\ \\ \end{array}\right.$};
+
     % Rótulos P(H)
-    \node[white] at (3,-0.7) {$\underbrace{\hspace{3cm}}_{P(H)}$};
-    
+    \node[white] at (3,-0.8) {$\underbrace{\hspace{3cm}}_{P(H)}$};
+
     % Texto E e H em cores diferentes
-    \node[scale=1.3] at (-1.2,2.7) {$P($\textcolor{lightblue}{$E$}$|$\textcolor{yellow}{$H$}$)$};
-    
+   % \node[white,scale=1.3] at (-1.7,2.7) {$P($\textcolor{lightblue}{$E$}$|$\textcolor{yellow}{$H$}$)$};
+
     % Texto H em cor diferente no termo P(H)
-    \node[scale=1.3] at (3,-1.3) {$P($\textcolor{yellow}{$H$}$)$};
+    %\node[white,scale=1.3] at (3,-1.5) {$P($\textcolor{yellow}{$H$}$)$};
 \end{tikzpicture}
-\vspace{0.8cm}
-\begin{alertblock}{Teorema de Bayes}
-\begin{align}
-P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
-\end{align}
+
+ %\begin{tikzpicture}[scale=.5]
+    %% Fundo preto
+    %\fill[black] (-2,-1.5) rectangle (7,4);
+    
+    %% Retângulo principal (espaço amostral)
+    %\draw[white, very thick] (0,0) rectangle (6,3);
+    
+    %% Divisão interna do retângulo - CORRIGIDO: Divisão horizontal completa
+    %\draw[white, very thick] (3,0) -- (3,3);
+    %\draw[white, very thick] (0,1.5) -- (6,1.5);
+    
+    %% Preenchimento das áreas
+    %\fill[lightgray] (0,1.5) rectangle (3,3);
+    %\fill[lightblue] (0,0) rectangle (3,1.5);
+    %\fill[darkgray] (3,1.5) rectangle (6,3);
+    %\fill[darkblue] (3,0) rectangle (6,1.5);
+    
+    %% Rótulos P(E|H)
+    %\node[white] at (-0.7,1.5) {$P(E|H) \left\{\begin{array}{c} \\ \\ \end{array}\right.$};
+    
+    %% Rótulos P(H)
+    %\node[white] at (3,-0.7) {$\underbrace{\hspace{3cm}}_{P(H)}$};
+    
+    %% Texto E e H em cores diferentes
+    %\node[scale=1.3] at (-1.2,2.7) {$P($\textcolor{lightblue}{$E$}$|$\textcolor{yellow}{$H$}$)$};
+    
+    %% Texto H em cor diferente no termo P(H)
+    %\node[scale=1.3] at (3,-1.3) {$P($\textcolor{yellow}{$H$}$)$};
+%\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+\begin{block}{Teorema de Bayes}
+%\begin{align}
+%P(E|H) = \frac{P(H|E) \cdot P(E)}{P(H)}
+%\end{align}
 
 \begin{align}
-P(\textcolor{lightblue}{E}|\textcolor{yellow}{H}) = \frac{P(\textcolor{yellow}{H}|\textcolor{lightblue}{E}) \cdot P(\textcolor{lightblue}{E})}{P(\textcolor{yellow}{H})}
+P(\textcolor{lightblue}{E}|\textcolor{red}{H}) = \frac{P(\textcolor{red}{H}|\textcolor{lightblue}{E}) \cdot P(\textcolor{lightblue}{E})}{P(\textcolor{yellow}{H})}
 \end{align}
-\end{alertblock}
+\end{block}
 }
 % Slide 1: Título
 \begin{frame}
@@ -534,6 +564,89 @@ P(B) = P(B|A) \times P(A) + P(B|\neg A) \times P(\neg A)
 \end{center}
 \end{frame}
 
+\begin{frame}
+\frametitle{Probabilidade Condicional com Dois Dados}
+
+Qual é a probabilidade condicional de termos um lançamento de dois dados com soma par, dado que sabemos que  soma é maior que 9?
+\end{frame}
+
+\begin{frame}{Espaço Amostral}
+\begin{itemize}
+\item Dois dados: 6 faces cada $\Rightarrow$ 36 combinações possíveis
+\item Espaço amostral: pares $(i, j)$ com $i, j \in {1, 2, \ldots, 6}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Soma Par}
+\begin{itemize}
+\item Somas pares possíveis: 2, 4, 6, 8, 10, 12
+\item Total de combinações com soma par: \textbf{18}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Soma Par e $>$ 9}
+\begin{itemize}
+\item Somas 10 e 12:
+\begin{itemize}
+\item 10: (4,6), (5,5), (6,4) $\Rightarrow$ 3 casos
+\item 12: (6,6) $\Rightarrow$ 1 caso
+\end{itemize}
+\item Total: \textbf{4 combinações}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Probabilidade Condicional 1}
+
+
+
+\end{frame}
+
+\begin{frame}{Probabilidade de Soma $>$ 9}
+\begin{itemize}
+\item Somas: 10, 11, 12
+\item Combinações:
+\begin{itemize}
+\item 10: (4,6), (5,5), (6,4) $\Rightarrow$ 3
+\item 11: (5,6), (6,5) $\Rightarrow$ 2
+\item 12: (6,6) $\Rightarrow$ 1
+\end{itemize}
+\item Total: \textbf{6 combinações}
+\item $P(\text{soma} > 9) = \frac{6}{36} = \frac{1}{6}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Probabilidade Condicional 2}
+
+
+
+\begin{itemize}
+\item Total com soma $>$ 9: 6
+\item Desses, somas pares: 4
+\item Resultado: $\frac{4}{6} = \frac{2}{3}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teorema de Bayes}
+
+$$P(A|B) = \frac{P(B|A) \times P(A)}{P(B)}$$
+
+\begin{itemize}
+\item A: soma par
+\item B: soma $>$ 9
+\end{itemize}
+Substituindo:
+
+$$P(A|B) = \frac{P(B|A) \times P(A)}{P(B)} = \frac{\frac{4}{18} \times \frac{18}{36}}{\frac{1}{6}} = \frac{2}{3}$$
+
+\end{frame}
+
+\begin{frame}{Conclusão}
+\begin{itemize}
+\item Probabilidade condicional pode ser resolvida diretamente ou com Bayes
+\item Resultados coerentes: $\frac{2}{3}$ quando condicionamos soma $>$ 9
+\item Importante identificar corretamente os subconjuntos envolvidos
+\end{itemize}
+\end{frame}
 % Slide 4: Exemplo 1 - Problema do Teste Médico
 \begin{frame}
 \frametitle{Exemplo 1: Teste Médico}
@@ -570,111 +683,111 @@ P(D|T+) &= \frac{0,95 \times 0,01}{0,1085} \\
 \end{align*}
 \end{frame}
 
-% Slide 6: Visualização do Exemplo 1
-\begin{frame}
-\frametitle{Visualização do Exemplo 1}
-\begin{tikzpicture}[scale=0.6, transform shape]
-% Estilos
-\tikzset{
-    box/.style={rectangle, draw, thick, minimum height=1.5cm, text width=3.5cm, align=center, font=\small},
-    population/.style={rectangle, draw, thick, minimum height=5.0cm, minimum width=12cm, fill=blue!10, draw=blue!50},
-    disease/.style={rectangle, draw, thick, fill=red!30, draw=red!50},
-    no_disease/.style={rectangle, draw, thick, fill=green!30, draw=green!50},
-    true_positive/.style={rectangle, draw, thick, fill=red!60, draw=red!80},
-    false_negative/.style={rectangle, draw, thick, fill=red!20, draw=red!40},
-    false_positive/.style={rectangle, draw, thick, fill=green!50, draw=green!70},
-    true_negative/.style={rectangle, draw, thick, fill=green!20, draw=green!40}
-}
+%% Slide 6: Visualização do Exemplo 1
+%\begin{frame}
+%\frametitle{Visualização do Exemplo 1}
+%\begin{tikzpicture}[scale=0.6, transform shape]
+%% Estilos
+%\tikzset{
+    %box/.style={rectangle, draw, thick, minimum height=1.5cm, text width=3.5cm, align=center, font=\small},
+    %population/.style={rectangle, draw, thick, minimum height=5.0cm, minimum width=12cm, fill=blue!10, draw=blue!50},
+    %disease/.style={rectangle, draw, thick, fill=red!30, draw=red!50},
+    %no_disease/.style={rectangle, draw, thick, fill=green!30, draw=green!50},
+    %true_positive/.style={rectangle, draw, thick, fill=red!60, draw=red!80},
+    %false_negative/.style={rectangle, draw, thick, fill=red!20, draw=red!40},
+    %false_positive/.style={rectangle, draw, thick, fill=green!50, draw=green!70},
+    %true_negative/.style={rectangle, draw, thick, fill=green!20, draw=green!40}
+%}
 
-% Parâmetros
-\def\prevalencia{0.01}
-\def\sensibilidade{0.95}
-\def\especificidade{0.90}
-\def\larguraTotal{12}
-\def\alturaTotal{5}
+%% Parâmetros
+%\def\prevalencia{0.01}
+%\def\sensibilidade{0.95}
+%\def\especificidade{0.90}
+%\def\larguraTotal{12}
+%\def\alturaTotal{5}
 
-% Cálculos derivados
-\pgfmathsetmacro{\doenca}{\prevalencia}
-\pgfmathsetmacro{\semDoenca}{1-\prevalencia}
-\pgfmathsetmacro{\larguraDoenca}{\larguraTotal*\doenca}
-\pgfmathsetmacro{\larguraSemDoenca}{\larguraTotal*\semDoenca}
-\pgfmathsetmacro{\larguraVP}{\larguraDoenca*\sensibilidade}
-\pgfmathsetmacro{\larguraFN}{\larguraDoenca*(1-\sensibilidade)}
-\pgfmathsetmacro{\larguraVN}{\larguraSemDoenca*\especificidade}
-\pgfmathsetmacro{\larguraFP}{\larguraSemDoenca*(1-\especificidade)}
+%% Cálculos derivados
+%\pgfmathsetmacro{\doenca}{\prevalencia}
+%\pgfmathsetmacro{\semDoenca}{1-\prevalencia}
+%\pgfmathsetmacro{\larguraDoenca}{\larguraTotal*\doenca}
+%\pgfmathsetmacro{\larguraSemDoenca}{\larguraTotal*\semDoenca}
+%\pgfmathsetmacro{\larguraVP}{\larguraDoenca*\sensibilidade}
+%\pgfmathsetmacro{\larguraFN}{\larguraDoenca*(1-\sensibilidade)}
+%\pgfmathsetmacro{\larguraVN}{\larguraSemDoenca*\especificidade}
+%\pgfmathsetmacro{\larguraFP}{\larguraSemDoenca*(1-\especificidade)}
 
-% População total
-\node[population] at (\larguraTotal/2, \alturaTotal/2) {};
+%% População total
+%\node[population] at (\larguraTotal/2, \alturaTotal/2) {};
 
-% Com doença
-\node[disease, minimum width=\larguraDoenca cm, minimum height=\alturaTotal cm, anchor=west] at (0,0) {};
-\node[true_positive, minimum width=\larguraVP cm, minimum height=\alturaTotal/2 cm, anchor=north west] at (0,\alturaTotal) {};
-\node[false_negative, minimum width=\larguraFN cm, minimum height=\alturaTotal/2 cm, anchor=south west] at (\larguraVP,0) {};
+%% Com doença
+%\node[disease, minimum width=\larguraDoenca cm, minimum height=\alturaTotal cm, anchor=west] at (0,0) {};
+%\node[true_positive, minimum width=\larguraVP cm, minimum height=\alturaTotal/2 cm, anchor=north west] at (0,\alturaTotal) {};
+%\node[false_negative, minimum width=\larguraFN cm, minimum height=\alturaTotal/2 cm, anchor=south west] at (\larguraVP,0) {};
 
-% Sem doença
-\node[no_disease, minimum width=\larguraSemDoenca cm, minimum height=\alturaTotal cm, anchor=west] at (\larguraDoenca,0) {};
-\node[false_positive, minimum width=\larguraFP cm, minimum height=\alturaTotal/2 cm, anchor=north west] at (\larguraDoenca,\alturaTotal) {};
-\node[true_negative, minimum width=\larguraVN cm, minimum height=\alturaTotal/2 cm, anchor=south west] at (\larguraDoenca+\larguraFP,0) {};
+%% Sem doença
+%\node[no_disease, minimum width=\larguraSemDoenca cm, minimum height=\alturaTotal cm, anchor=west] at (\larguraDoenca,0) {};
+%\node[false_positive, minimum width=\larguraFP cm, minimum height=\alturaTotal/2 cm, anchor=north west] at (\larguraDoenca,\alturaTotal) {};
+%\node[true_negative, minimum width=\larguraVN cm, minimum height=\alturaTotal/2 cm, anchor=south west] at (\larguraDoenca+\larguraFP,0) {};
 
-%% Anotações
-\node[font=\bfseries] at (6,6.2) {Visualização do Teorema de Bayes: Teste Médico};
-\node[font=\small] at (6,5.5) {Prevalência: 1\%, Sensibilidade: 95\%, Especificidade: 90\%};
+%%% Anotações
+%\node[font=\bfseries] at (6,6.2) {Visualização do Teorema de Bayes: Teste Médico};
+%\node[font=\small] at (6,5.5) {Prevalência: 1\%, Sensibilidade: 95\%, Especificidade: 90\%};
 
-\end{tikzpicture}
-\end{frame}
+%\end{tikzpicture}
+%\end{frame}
 
-% Incluído de testetikkz.tex
-\begin{frame}
-\frametitle{Visualização do Exemplo 1}
-\begin{tikzpicture}[scale=0.6, transform shape]
-% Estilos
-\tikzset{
-    box/.style={rectangle, draw, thick, minimum height=1.5cm, text width=3.5cm, align=center, font=\small},
-    population/.style={rectangle, draw, thick, minimum height=5.0cm, minimum width=12cm, fill=blue!10, draw=blue!50},
-    disease/.style={rectangle, draw, thick, fill=red!30, draw=red!50},
-    no_disease/.style={rectangle, draw, thick, fill=green!30, draw=green!50},
-    true_positive/.style={rectangle, draw, thick, fill=red!60, draw=red!80},
-    false_negative/.style={rectangle, draw, thick, fill=red!20, draw=red!40},
-    false_positive/.style={rectangle, draw, thick, fill=green!50, draw=green!70},
-    true_negative/.style={rectangle, draw, thick, fill=green!20, draw=green!40}
-}
+%% Incluído de testetikkz.tex
+%\begin{frame}
+%\frametitle{Visualização do Exemplo 1}
+%\begin{tikzpicture}[scale=0.6, transform shape]
+%% Estilos
+%\tikzset{
+    %box/.style={rectangle, draw, thick, minimum height=1.5cm, text width=3.5cm, align=center, font=\small},
+    %population/.style={rectangle, draw, thick, minimum height=5.0cm, minimum width=12cm, fill=blue!10, draw=blue!50},
+    %disease/.style={rectangle, draw, thick, fill=red!30, draw=red!50},
+    %no_disease/.style={rectangle, draw, thick, fill=green!30, draw=green!50},
+    %true_positive/.style={rectangle, draw, thick, fill=red!60, draw=red!80},
+    %false_negative/.style={rectangle, draw, thick, fill=red!20, draw=red!40},
+    %false_positive/.style={rectangle, draw, thick, fill=green!50, draw=green!70},
+    %true_negative/.style={rectangle, draw, thick, fill=green!20, draw=green!40}
+%}
 
-% Parâmetros
-\def\prevalencia{0.01}
-\def\sensibilidade{0.95}
-\def\especificidade{0.90}
-\def\larguraTotal{12}
-\def\alturaTotal{5}
+%% Parâmetros
+%\def\prevalencia{0.01}
+%\def\sensibilidade{0.95}
+%\def\especificidade{0.90}
+%\def\larguraTotal{12}
+%\def\alturaTotal{5}
 
-% Cálculos derivados
-\pgfmathsetmacro{\doenca}{\prevalencia}
-\pgfmathsetmacro{\semDoenca}{1-\prevalencia}
-\pgfmathsetmacro{\larguraDoenca}{\larguraTotal*\doenca}
-\pgfmathsetmacro{\larguraSemDoenca}{\larguraTotal*\semDoenca}
-\pgfmathsetmacro{\larguraVP}{\larguraDoenca*\sensibilidade}
-\pgfmathsetmacro{\larguraFN}{\larguraDoenca*(1-\sensibilidade)}
-\pgfmathsetmacro{\larguraVN}{\larguraSemDoenca*\especificidade}
-\pgfmathsetmacro{\larguraFP}{\larguraSemDoenca*(1-\especificidade)}
+%% Cálculos derivados
+%\pgfmathsetmacro{\doenca}{\prevalencia}
+%\pgfmathsetmacro{\semDoenca}{1-\prevalencia}
+%\pgfmathsetmacro{\larguraDoenca}{\larguraTotal*\doenca}
+%\pgfmathsetmacro{\larguraSemDoenca}{\larguraTotal*\semDoenca}
+%\pgfmathsetmacro{\larguraVP}{\larguraDoenca*\sensibilidade}
+%\pgfmathsetmacro{\larguraFN}{\larguraDoenca*(1-\sensibilidade)}
+%\pgfmathsetmacro{\larguraVN}{\larguraSemDoenca*\especificidade}
+%\pgfmathsetmacro{\larguraFP}{\larguraSemDoenca*(1-\especificidade)}
 
-% População total
-\node[population] at (\larguraTotal/2, \alturaTotal/2) {};
+%% População total
+%\node[population] at (\larguraTotal/2, \alturaTotal/2) {};
 
-% Com doença
-\node[disease, minimum width=\larguraDoenca cm, minimum height=\alturaTotal cm, anchor=west] at (0,0) {};
-\node[true_positive, minimum width=\larguraVP cm, minimum height=\alturaTotal/2 cm, anchor=north west] at (0,\alturaTotal) {};
-\node[false_negative, minimum width=\larguraFN cm, minimum height=\alturaTotal/2 cm, anchor=south west] at (\larguraVP,0) {};
+%% Com doença
+%\node[disease, minimum width=\larguraDoenca cm, minimum height=\alturaTotal cm, anchor=west] at (0,0) {};
+%\node[true_positive, minimum width=\larguraVP cm, minimum height=\alturaTotal/2 cm, anchor=north west] at (0,\alturaTotal) {};
+%\node[false_negative, minimum width=\larguraFN cm, minimum height=\alturaTotal/2 cm, anchor=south west] at (\larguraVP,0) {};
 
-% Sem doença
-\node[no_disease, minimum width=\larguraSemDoenca cm, minimum height=\alturaTotal cm, anchor=west] at (\larguraDoenca,0) {};
-\node[false_positive, minimum width=\larguraFP cm, minimum height=\alturaTotal/2 cm, anchor=north west] at (\larguraDoenca,\alturaTotal) {};
-\node[true_negative, minimum width=\larguraVN cm, minimum height=\alturaTotal/2 cm, anchor=south west] at (\larguraDoenca+\larguraFP,0) {};
+%% Sem doença
+%\node[no_disease, minimum width=\larguraSemDoenca cm, minimum height=\alturaTotal cm, anchor=west] at (\larguraDoenca,0) {};
+%\node[false_positive, minimum width=\larguraFP cm, minimum height=\alturaTotal/2 cm, anchor=north west] at (\larguraDoenca,\alturaTotal) {};
+%\node[true_negative, minimum width=\larguraVN cm, minimum height=\alturaTotal/2 cm, anchor=south west] at (\larguraDoenca+\larguraFP,0) {};
 
-%% Anotações
-\node[font=\bfseries] at (6,6.2) {Visualização do Teorema de Bayes: Teste Médico};
-\node[font=\small] at (6,5.5) {Prevalência: 1\%, Sensibilidade: 95\%, Especificidade: 90\%};
+%%% Anotações
+%\node[font=\bfseries] at (6,6.2) {Visualização do Teorema de Bayes: Teste Médico};
+%\node[font=\small] at (6,5.5) {Prevalência: 1\%, Sensibilidade: 95\%, Especificidade: 90\%};
 
-\end{tikzpicture}
-\end{frame}
+%\end{tikzpicture}
+%\end{frame}
 
 \begin{frame}
 \frametitle{Por que o resultado é tão baixo?}

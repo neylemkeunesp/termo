@@ -530,4 +530,95 @@ $$\sum p_i=1$$, neste caso podemos mostrar que $p_i=1/t$ e
 $$S=k\ln W$$
 }
 
+% Slide adicional sobre o ensemble Micro-canônico com características detalhadas
+\frame{\frametitle{Micro-canônico - Características}
+  \begin{itemize}
+  \item Sistema isolado: $E$, $V$ e $N$ constantes
+  \item Todos os microestados com a mesma energia têm igual probabilidade
+  \item Entropia: $S = k \ln W(E,V,N)$
+  \item Temperatura definida como: $\frac{1}{T} = \left(\frac{\partial S}{\partial E}\right)_{V,N}$
+  \item Pressão definida como: $\frac{p}{T} = \left(\frac{\partial S}{\partial V}\right)_{E,N}$
+  \item Potencial químico: $-\frac{\mu}{T} = \left(\frac{\partial S}{\partial N}\right)_{E,V}$
+  \end{itemize}
+}
+
+% Slide introdutório sobre o ensemble Canônico
+\frame{\frametitle{Canônico}
+  \begin{itemize}
+  \item Sistema em contato térmico com um reservatório: $T$, $V$ e $N$ constantes
+  \item A energia pode flutuar
+  \item Distribuição de probabilidade: $p_i = \frac{e^{-\beta E_i}}{Q}$
+  \item Função de partição: $Q = \sum_i e^{-\beta E_i}$
+  \item Energia livre de Helmholtz: $F = -kT \ln Q$
+  \end{itemize}
+}
+
+% Slide sobre as propriedades termodinâmicas derivadas da função de partição canônica
+\frame{\frametitle{Canônico - Propriedades Termodinâmicas}
+  \begin{itemize}
+  \item Energia interna: $U = -\frac{\partial \ln Q}{\partial \beta} = kT^2 \frac{\partial \ln Q}{\partial T}$
+  \item Entropia: $S = k\ln Q + \frac{U}{T}$
+  \item Calor específico: $C_V = \left(\frac{\partial U}{\partial T}\right)_V = k\beta^2 \frac{\partial^2 \ln Q}{\partial \beta^2}$
+  \item Pressão: $p = kT \left(\frac{\partial \ln Q}{\partial V}\right)_{T,N}$
+  \item Flutuações de energia: $\langle (E - \langle E \rangle)^2 \rangle = kT^2 C_V$
+  \end{itemize}
+}
+
+% Slide introdutório sobre o ensemble Gran-canônico
+\frame{\frametitle{Gran-canônico}
+  \begin{itemize}
+  \item Sistema em contato térmico e químico com um reservatório: $T$, $V$ e $\mu$ constantes
+  \item Tanto a energia quanto o número de partículas podem flutuar
+  \item Distribuição de probabilidade: $p_i = \frac{e^{-\beta(E_i - \mu N_i)}}{\Xi}$
+  \item Grande função de partição: $\Xi = \sum_i e^{-\beta(E_i - \mu N_i)}$
+  \item Grande potencial: $\Omega = -kT \ln \Xi = -pV$
+  \end{itemize}
+}
+
+% Slide sobre as propriedades termodinâmicas derivadas da grande função de partição
+\frame{\frametitle{Gran-canônico - Propriedades}
+  \begin{itemize}
+  \item Número médio de partículas: $\langle N \rangle = kT \frac{\partial \ln \Xi}{\partial \mu}$
+  \item Energia interna: $U = -\frac{\partial \ln \Xi}{\partial \beta} + \mu \langle N \rangle$
+  \item Pressão: $p = kT \frac{\partial \ln \Xi}{\partial V}$
+  \item Flutuações no número de partículas: $\langle (N - \langle N \rangle)^2 \rangle = kT \frac{\partial \langle N \rangle}{\partial \mu}$
+  \item Particularmente útil para sistemas abertos e fenômenos de adsorção
+  \end{itemize}
+}
+
+% Tabela comparativa dos três ensembles com fonte reduzida
+\frame{\frametitle{Comparação entre Ensembles}
+  \begin{center}
+  {\footnotesize
+  \begin{tabular}{|l|c|c|c|}
+  \hline
+  \textbf{Ensemble} & \textbf{Micro-canônico} & \textbf{Canônico} & \textbf{Gran-canônico} \\
+  \hline
+  Variáveis fixas & $E, V, N$ & $T, V, N$ & $T, V, \mu$ \\
+  \hline
+  Variáveis flutuantes & Nenhuma & $E$ & $E, N$ \\
+  \hline
+  Função característica & $S(E,V,N)$ & $F(T,V,N)$ & $\Omega(T,V,\mu)$ \\
+  \hline
+  Função de partição & $W(E)$ & $Q = \sum_i e^{-\beta E_i}$ & $\Xi = \sum_i e^{-\beta(E_i - \mu N_i)}$ \\
+  \hline
+  \end{tabular}
+  }
+  \end{center}
+  }
+
+% Slide sobre a equivalência dos ensembles no limite termodinâmico
+\frame{\frametitle{Equivalência de Ensembles}
+  \begin{itemize}
+  \item No limite termodinâmico ($N \to \infty$, $V \to \infty$, $N/V$ constante):
+    \begin{itemize}
+    \item As flutuações relativas tendem a zero: $\frac{\Delta E}{E} \sim \frac{1}{\sqrt{N}}$
+    \item Os três ensembles produzem os mesmos valores médios para observáveis macroscópicos
+    \item As funções termodinâmicas se relacionam por transformadas de Legendre
+    \end{itemize}
+  \item Escolha do ensemble depende da conveniência matemática e do sistema físico
+  \item Sistemas pequenos: a escolha do ensemble é importante e pode levar a resultados diferentes
+  \end{itemize}
+}
+
 \end{document}
