@@ -1,8 +1,6 @@
 % $Header: /cvsroot/latex-beamer/latex-beamer/examples/beamerexample5.tex,v 1.22 2004/10/08 14:02:33 tantau Exp $
 
-\docdntntcla[s[11p1]{bct[1rp
-t]{beamer}
-
+\documentclass[11pt]{beamer}
 \usetheme{Darmstadt}
 
 \usepackage{times}
@@ -12,7 +10,9 @@ t]{beamer}
 \usepackage[portuges]{babel}
 \usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
 \usepackage{amsmath,amssymb}
-\usepackage[latin1]{inputenc}
+
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
 \usepackage{graphicx}
 
 \setbeamercovered{dynamic}
@@ -41,11 +41,12 @@ t]{beamer}
 
 \logo{\pgfuseimage{logo}}
 
-\title{Significado F�sico do Calor Espec�fico}
+\title{Significado Físico do Calor Específico}
 \author{Ney Lemke}
+
 \institute[IBB-UNESP]{%
-    Departamento de F�sica e Biof�sica}
-\date{ 2011}                                
+    Departamento de Biofísica e Farmacologia}
+\date{\today}                                
 
 \colorlet{redshaded}{red!25!bg}
 \colorlet{shaded}{black!25!bg}
@@ -80,14 +81,14 @@ t]{beamer}
 
 \frame{\frametitle{Outline} 
 \tableofcontents[part=1]}
-\section{Temperatura: Perspectiva Microsc�pica}
-\frame{\frametitle{Defini��o de Temperatura}
+\section{Temperatura: Perspectiva Microscópica}
+\frame{\frametitle{Definição de Temperatura}
 
-Definimos a Temperatura de um sistema na termodin�mica:
+Definimos a Temperatura de um sistema na termodinâmica:
 
 $$\frac{1}{T}=\left( \frac{\partial S}{\partial U}\right)_{V,N}$$
 
-Esta equa��o relaciona a temperatura ao aumento de entropia causado por um aumento de energia. 
+Esta equação relaciona a temperatura ao aumento de entropia causado por um aumento de energia. 
 }
 
 \frame{\frametitle{Sistema de dois estados:}
@@ -96,14 +97,12 @@ Esta equa��o relaciona a temperatura ao aumento de entropia causado por um a
 \end{center}
 }
 
-
 \frame{\frametitle{Sistema de dois estados:}
       \begin{itemize}
-      \item $n$ part�culas no estado excitado ($\epsilon_o>0$)
-      \item $N-n$ part�culas no estado fundamental 
+      \item $n$ partículas no estado excitado ($\epsilon_o>0$)
+      \item $N-n$ partículas no estado fundamental 
       \end{itemize}
 }
-
 
 \frame{\frametitle{Sistema de dois estados:}
 Energia:
@@ -124,12 +123,9 @@ $$\frac{1}{T}=-\frac{k}{\epsilon_o}\ln \left(\frac{n/N}{1-n/N} \right)
 %=-\frac{k}{\epsilon_o}\ln \left( \frac{U/N\epsilon}{1-U/N} \right)
 $$
 
-
 $$\frac{1}{T}=\frac{k}{\epsilon_o}\ln \left(\frac{f_{ground}}{f_{excited}} \right)$$
 
 }
-
-
 
 \frame{\frametitle{Sistema de dois estados:}
 \begin{center}
@@ -137,33 +133,31 @@ $$\frac{1}{T}=\frac{k}{\epsilon_o}\ln \left(\frac{f_{ground}}{f_{excited}} \righ
 \end{center}
 }
 
-
 \frame{\frametitle{Sistema de dois estados:}
   \begin{description}
-  \item[$T>0$] Para sistemas com baixa energia a temperatura � positiva. Estes sistemas abosorvem energia para atingir o m�ximo da multiplicidade.
-\item[$T=0$] Estes sistemas possuem metade dos �tomos em cada n�vel de energia. 
+  \item[$T>0$] Para sistemas com baixa energia a temperatura é positiva. Estes sistemas absorvem energia para atingir o máximo da multiplicidade.
+\item[$T=0$] Estes sistemas possuem metade dos átomos em cada nível de energia. 
 
-  \item[$T<0$] Sistemas com valores elevados de energia possuem temperatura negativa, ou seja esses sistemas devem perder energia para maximimizar sua multiplicidade. 
+  \item[$T<0$] Sistemas com valores elevados de energia possuem temperatura negativa, ou seja esses sistemas devem perder energia para maximizar sua multiplicidade. 
 
   \end{description}
 }
-\section{Calor Espec�fico}
-\frame{\frametitle{Significado F�sico do Calor Espec�fico }
+\section{Calor Específico}
+\frame{\frametitle{Significado Físico do Calor Específico }
 
-O calor espec�fico mede a quantidade de calor necess�ria 
+O calor específico mede a quantidade de calor necessária 
 para aumentar a temperatura de um corpo. Neste caso vamos considerar $C_V$ 
-e um sistema em contato com um banho t�rmico. 
+e um sistema em contato com um banho térmico. 
 
 Devido ao contato com o banho a Temperatura do Corpo flutua aleatoriamente. 
 
 }
 
-
 \frame{\frametitle{Densidade de estados}
 
 $$p(E)=\frac{W(E)e^{-\beta E}}{Q}$$
 
-$W(E)$ � a denisdade de estados, ou seja o n�mero de estados com uma determinada
+$W(E)$ é a densidade de estados, ou seja o número de estados com uma determinada
 energia $E$.
  
 \begin{center}
@@ -171,23 +165,21 @@ energia $E$.
 \end{center}
 }
 
-\frame{\frametitle{Flutua��es}
-Vamos avaliar esta quantidade na proximidade do m�ximo. Vamos assumir
-que o banho t�rmico possui temperatura $T_o$ e que $\beta=1/kT_o$.
+\frame{\frametitle{Flutuações}
+Vamos avaliar esta quantidade na proximidade do máximo. Vamos assumir
+que o banho térmico possui temperatura $T_o$ e que $\beta=1/kT_o$.
 
 $$\ln p(E)=\ln p(U)+(E-U) (\ln p(U))^\prime +\frac{(E-U)^2}{2} (\ln p(U))^{\prime\prime}$$
 
-Sabemos que no m�ximo $E=\langle E\rangle=U$. Como estamos no m�ximo:
+Sabemos que no máximo $E=\langle E\rangle=U$. Como estamos no máximo:
 
 $$(\ln p(U))^\prime=0$$
 
-
 $$(\ln p(U))^{\prime\prime}=(\ln W -\beta)^{\prime\prime}=(S/k -\beta)^{\prime\prime}$$
-
 
 }
 
-\frame{\frametitle{Flutua��es}
+\frame{\frametitle{Flutuações}
 $$(\ln p(U))^{\prime\prime}=(\ln W -\beta)^{\prime\prime}=(S/k -\beta)^{\prime\prime}$$
 
 $$(\ln p(U))^{\prime\prime}=(S/k -\frac{1}{kT_o})^{\prime\prime}
@@ -198,22 +190,20 @@ $$=\frac{-1}{kT^2}\left( \frac{\partial T}{\partial E} \right)_{E=U}$$
 $$=\frac{-1}{kT_o^2C_V}$$
 }
 
-\frame{\frametitle{Flutua��es}
+\frame{\frametitle{Flutuações}
 
 $$p(E)=Ce^{\frac{-(E-U)^2}{2kT_o^2C_V}}$$
 
-Como essa fun��o � gaussiana sabemos que:
+Como essa função é gaussiana sabemos que:
 
 $$\sigma^2=\langle (E-U)^2\rangle=kT_o^2C_V$$
 
-Uma Quantidade interessante �
+Uma Quantidade interessante é
 
 $$\frac{\sigma}{U}\sim \frac{\sqrt{N}}{N}\sim N^{-1/2}$$
 
-Ou seja no limite termodin�mico as flutua��es s�o desprez�veis.
-Para $N\sim 10^{23}$, as flutua��es seriam $10^{-11}$, inacess�veis experimentalmente.
-
+Ou seja no limite termodinâmico as flutuações são desprezíveis.
+Para $N\sim 10^{23}$, as flutuações seriam $10^{-11}$, inacessíveis experimentalmente.
 
 }
 \end{document}
-
