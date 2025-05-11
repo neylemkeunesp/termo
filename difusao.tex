@@ -1,0 +1,420 @@
+% $Header: /cvsroot/latex-beamer/latex-beamer/examples/beamerexample5.tex,v 1.22 2004/10/08 14:02:33 tantau Exp $
+
+\documentclass[11pt]{beamer}
+
+\usetheme{Darmstadt}
+
+\usepackage{times}
+\usefonttheme{structurebold}
+
+%\usepackage[english]{babel}
+\usepackage[portuges]{babel}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps}
+\usepackage{amsmath,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+
+\setbeamercovered{dynamic}
+
+\newcommand{\Lang}[1]{\operatorname{\text{\textsc{#1}}}}
+
+\newcommand{\Class}[1]{\operatorname{\mathchoice
+  {\text{\sf \small #1}}
+  {\text{\sf \small #1}}
+  {\text{\sf #1}}
+  {\text{\sf #1}}}}
+
+\newcommand{\NumSAT}      {\text{\small\#SAT}}
+\newcommand{\NumA}        {\#_{\!A}}
+
+\newcommand{\barA}        {\,\bar{\!A}}
+
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\Set}[1]{\{#1\}}
+
+\pgfdeclaremask{tu}{beamer-tu-logo-mask}
+\pgfdeclaremask{computer}{beamer-computer-mask}
+\pgfdeclareimage[interpolate=true,mask=computer,height=2cm]{computerimage}{beamer-computer}
+\pgfdeclareimage[interpolate=true,mask=computer,height=2cm]{computerworkingimage}{beamer-computerred}
+\pgfdeclareimage[mask=tu,height=.5cm]{logo}{logounesp}
+
+\logo{\pgfuseimage{logo}}
+\title{Cinética Física: Difusão, Permeação e Fluxo}
+\author{Ney Lemke}
+\institute[IBB-UNESP]{%
+    Departamento de Biofísica e Farmacologia}
+\date{\today}
+
+\colorlet{redshaded}{red!25!bg}
+\colorlet{shaded}{black!25!bg}
+\colorlet{shadedshaded}{black!10!bg}
+\colorlet{blackshaded}{black!40!bg}
+
+\colorlet{darkred}{red!80!black}
+\colorlet{darkblue}{blue!80!black}
+\colorlet{darkgreen}{green!80!black}
+
+\def\radius{0.96cm}
+\def\innerradius{0.85cm}
+
+\def\softness{0.4}
+\definecolor{softred}{rgb}{1,\softness,\softness}
+\definecolor{softgreen}{rgb}{\softness,1,\softness}
+\definecolor{softblue}{rgb}{\softness,\softness,1}
+
+\definecolor{softrg}{rgb}{1,1,\softness}
+\definecolor{softrb}{rgb}{1,\softness,1}
+\definecolor{softgb}{rgb}{\softness,1,1}
+
+\AtBeginSection[]{\frame{\frametitle{Outline}\tableofcontents[current]}}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section*{Outline}
+
+\part{Parte I}
+
+\frame{\frametitle{Outline} 
+\tableofcontents[part=1]}
+
+% Seção 1: Introdução
+\section{Introdução}
+
+\begin{frame}
+    \frametitle{O que é Cinética Física?}
+    \begin{itemize}
+        \item Estudo das taxas de processos físicos e químicos.
+        \item Foco no movimento de moléculas e partículas.
+        \item Exemplos:
+        \begin{itemize}
+            \item Difusão de $CO_2$ em refrigerantes.
+            \item Liberação controlada de fármacos.
+            \item Fluxo de metabólitos através de membranas biológicas.
+            \item Correntes elétricas (fluxo de íons/elétrons).
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Definindo o Fluxo ($J$)}
+    \begin{itemize}
+        \item Quantidade de material passando por unidade de área por unidade de tempo.
+        \item Consideramos fluxo em uma direção (eixo x).
+        \item Material pode ser número de partículas, massa ou volume.
+        \item Relação fundamental: $J = c \cdot v$, onde $c$ é a concentração e $v$ é a velocidade.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ilustração do Fluxo de Partículas}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{difussion_images/image-001.png}
+    \end{center}
+    \begin{itemize}
+        \item O fluxo de partículas é $J = cv$, onde $c$ é a concentração e $v$ é a velocidade.
+        \item $A$ é a área da seção transversal.
+        \item O fluido se move uma distância $\Delta x$ no tempo $\Delta t$ com velocidade $v$.
+    \end{itemize}
+\end{frame}
+
+% Seção 2: Leis Lineares
+\section{Leis Lineares: Forças e Fluxos}
+
+\begin{frame}
+    \frametitle{Leis Empíricas Fundamentais}
+    \begin{itemize}
+        \item Cinética é governada por leis empíricas.
+        \item Fluxo é proporcional à força motriz.
+        \item $J = Lf$, onde $L$ é a constante de proporcionalidade.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Lei de Fick (Difusão)}
+    \begin{itemize}
+        \item Fluxo de partículas é proporcional ao gradiente de concentração.
+        \item Em uma dimensão: $J = -D \frac{dc}{dx}$
+        \item Em três dimensões: $\mathbf{J} = -D \nabla c$
+        \item $D$: Coeficiente de difusão (maior $D$, maior fluxo para o mesmo gradiente).
+        \item O sinal negativo indica fluxo no sentido de menor concentração.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Outras Leis Lineares}
+    \begin{itemize}
+        \item \textbf{Lei de Fourier:} Fluxo de calor é proporcional ao gradiente de temperatura.
+        \item \textbf{Lei de Ohm:} Fluxo de corrente elétrica é proporcional ao gradiente de potencial elétrico (tensão).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{A "Força" em um Gradiente de Concentração}
+    \begin{itemize}
+        \item Não é uma força direta em cada partícula.
+        \item Resulta da tendência termodinâmica para uniformizar concentrações (entropia de mistura).
+        \item Relacionada ao gradiente de potencial químico: $f = -\frac{d\mu}{dx} = -kT \frac{d \ln c}{dx} = -\frac{kT}{c}\frac{dc}{dx}$.
+        \item Relação entre $D$ e mobilidade ($u$): $D = ukT$, onde $u=L/c$.
+    \end{itemize}
+\end{frame}
+
+% Seção 3: A Equação da Difusão
+\section{A Equação da Difusão}
+
+\begin{frame}
+    \frametitle{Derivação da Equação da Difusão}
+    \begin{itemize}
+        \item Combinando a Lei de Fick com a conservação de partículas.
+        \item Considera o fluxo de entrada e saída de um volume elementar.
+        \item Taxa de variação da concentração no tempo é igual ao negativo da divergência do fluxo: $\frac{\partial c}{\partial t} = -\frac{\partial J}{\partial x}$ (em 1D).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Lei de Fick Segunda (Equação da Difusão)}
+    \begin{itemize}
+        \item Substituindo a Lei de Fick Primeira na relação de conservação.
+        \item Em uma dimensão (D constante): $\frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2}$
+        \item Em três dimensões: $\frac{\partial c}{\partial t} = D \nabla^2 c$
+        \item Equação diferencial parcial que descreve $c(x,y,z,t)$.
+        \item Requer condições de contorno e condição inicial para ser resolvida.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Exemplo: Difusão Através de uma Lâmina/Membrana}
+    \begin{itemize}
+        \item Exemplo 18.1: Fluxo através de uma membrana de espessura $h$.
+        \item Concentrações $c_l$ (esquerda) e $c_r$ (direita).
+        \item Estado estacionário ($\partial c / \partial t = 0$).
+        \item Equação se reduz a $\frac{d^2 c}{dx^2} = 0$.
+        \item Perfil de concentração linear: $c(x) = A_1 x + A_2$.
+        \item Condições de contorno: $c(0) = Kc_l$, $c(h) = Kc_r$ ($K$: coeficiente de partição).
+        \item Perfil de concentração: $c(x) = \frac{K(c_r - c_l)}{h} x + Kc_l$.
+        \item Fluxo no estado estacionário: $J = \frac{KD}{h}(c_l - c_r) = \frac{KD}{h}\Delta c$.
+        \item Permeabilidade ($P$): $P = J/\Delta c = KD/h$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Exemplo: Difusão em Direção a uma Esfera}
+    \begin{itemize}
+        \item Partículas pequenas difundindo em direção a uma esfera de raio $a$.
+        \item Taxa de colisão (corrente $I$).
+        \item Resolvendo a equação da difusão em coordenadas esféricas no estado estacionário.
+        \item Condições de contorno: $c(r \rightarrow \infty) = c_\infty$, $c(a) = 0$ (esfera absorvente).
+        \item Perfil de concentração: $c(r) = c_\infty (1 - a/r)$.
+        \item Fluxo radial: $J(r) = -D \frac{dc}{dr} = \frac{-Dc_\infty a}{r^2}$.
+        \item Corrente na superfície ($r=a$): $I(a) = J(a) \cdot 4\pi a^2 = -4\pi Dc_\infty a$.
+        \item Coeficiente de taxa controlada por difusão: $k_a = 4\pi Da$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Exemplo: Difusão a Partir de uma Fonte Pontual}
+    \begin{itemize}
+        \item Como uma gota de corante se espalha na água.
+        \item Solução da equação da difusão para uma condição inicial pontual ($n_0$ na origem em $t=0$).
+        \item Em uma dimensão: $c(x,t) = \frac{n_0}{(4\pi Dt)^{1/2}} \exp\left(-\frac{x^2}{4Dt}\right)$.
+        \item Em $d$ dimensões: $c(r,t) = \frac{n_0}{(4\pi Dt)^{d/2}} \exp\left(-\frac{r^2}{4Dt}\right)$.
+        \item A distribuição se alarga e diminui de pico com o tempo.
+    \end{itemize}
+\end{frame}
+
+% Seção 4: Fontes e Sumidouros
+\section{Fontes e Sumidouros}
+
+\begin{frame}
+    \frametitle{Fontes e Sumidouros na Equação da Difusão}
+    \begin{itemize}
+        \item Processos que criam (fontes) ou removem (sumidouros) partículas.
+        \item Podem ser reações químicas, nascimentos/mortes em biologia, etc.
+        \item Termos adicionados à equação da difusão: $\frac{\partial c}{\partial t} = D \nabla^2 c + \text{Fontes} - \text{Sumidouros}$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Exemplos da Biologia Populacional}
+    \begin{itemize}
+        \item Modelo de Malthus (crescimento exponencial): $\frac{dc}{dt} = ac$.
+        \item Modelo de Verhulst (crescimento com saturação): $\frac{dc}{dt} = ac - bc^2$.
+        \item Modelo de Fisher (difusão + crescimento com saturação): $\frac{\partial c}{\partial t} = D \nabla^2 c + ac - bc^2$.
+        \item Mostra como a população se espalha por difusão, mas é limitada pelo crescimento.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Exemplo: Difusão Acoplada a Reação Química}
+    \begin{itemize}
+        \item Exemplo 18.4: Fármaco difundindo de um comprimido para uma solução onde reage.
+        \item Reação de depleção de primeira ordem: $\frac{dc}{dt} = -k_{rx} c$.
+        \item Equação da difusão com sumidouro: $\frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2} - k_{rx} c$.
+        \item No estado estacionário: $\frac{d^2 c}{dx^2} - \frac{k_{rx}}{D} c = 0$.
+        \item Solução (para $c(\infty)=0$): $c(x) = c(0) \exp\left(-x\sqrt{\frac{k_{rx}}{D}}\right)$.
+        \item A concentração diminui exponencialmente com a distância.
+        \item Fluxo na superfície do comprimido ($x=0$): $J = c(0)\sqrt{Dk_{rx}}$.
+    \end{itemize}
+\end{frame}
+
+% Seção 5: Forças Adicionais
+\section{Partículas Sujeitas a Forças Adicionais}
+
+\begin{frame}
+    \frametitle{Forças Externas e Fluxos}
+    \begin{itemize}
+        \item Partículas podem ser sujeitas a forças direcionais (ex: gravidade, campo elétrico).
+        \item Em líquidos, a velocidade é proporcional à força aplicada (regime de atrito): $f = \xi v$, onde $\xi$ é o coeficiente de atrito.
+        \item Fluxo devido a uma força aplicada: $J_{ap} = c v = \frac{cf}{\xi}$.
+        \item Lei de Fick generalizada (com gradiente e força): $J = -D \frac{\partial c}{\partial x} + \frac{cf}{\xi}$.
+        \item Equação de Smoluchowski: $\frac{\partial c}{\partial t} = D \frac{\partial^2 c}{\partial x^2} - \frac{f}{\xi} \frac{\partial c}{\partial x}$.
+    \end{itemize}
+\end{frame}
+
+% Seção 6: Equação de Einstein-Smoluchowski
+\section{Equação de Einstein-Smoluchowski}
+
+\begin{frame}
+    \frametitle{Relacionando Difusão e Atrito}
+    \begin{itemize}
+        \item Derivada considerando o equilíbrio entre o fluxo devido à força (gravidade) e o fluxo devido ao gradiente de concentração.
+        \item No equilíbrio, $J=0$.
+        \item $D \frac{dc}{dx} = \frac{cf}{\xi}$.
+        \item Integrando e comparando com a distribuição de Boltzmann ($c(x)/c(0) = e^{-w(x)/kT}$).
+        \item \textbf{Equação de Einstein-Smoluchowski:} $D = \frac{kT}{\xi}$.
+        \item Permite determinar $\xi$ a partir de $D$, dando informações sobre o tamanho/forma da partícula.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Lei de Stokes e Lei de Stokes-Einstein}
+    \begin{itemize}
+        \item Lei de Stokes (para esferas em fluido): $\xi = 6\pi\eta a$, onde $\eta$ é a viscosidade e $a$ é o raio.
+        \item \textbf{Lei de Stokes-Einstein:} $D = \frac{kT}{6\pi\eta a}$.
+        \item Prevê que partículas maiores difundem mais lentamente.
+        \item Coeficientes de atrito para outras formas também existem (discos, elipsoides).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Perspectiva Microscópica: Movimento Browniano}
+    \begin{itemize}
+        \item Difusão resulta do bombardeio aleatório pelas moléculas do solvente.
+        \item Modelo de caminhada aleatória (random walk).
+        \item Relação entre o deslocamento quadrático médio e o coeficiente de difusão: $\langle x^2 \rangle = 2Dt$ (1D), $\langle r^2 \rangle = 2dDt$ ($d$ dimensões).
+        \item Permite relacionar modelos microscópicos com medidas experimentais de $D$.
+    \end{itemize}
+\end{frame}
+
+% Seção 7: Catracas Brownianas
+\section{Catracas Brownianas}
+
+\begin{frame}
+    \frametitle{Convertendo Eventos de Ligação/Liberação em Movimento Direcionado}
+    \begin{itemize}
+        \item Como máquinas moleculares (proteínas motoras) geram movimento direcional.
+        \item Combina movimento Browniano aleatório com eventos de ligação/liberação dependentes de energia, mas não direcionais.
+        \item Modelo da Catraca Browniana: Partícula difundindo em um potencial assimétrico (dente de serra).
+        \item Ciclo: Ligação $\rightarrow$ Liberação (difusão aleatória) $\rightarrow$ Religação (caindo no mínimo de energia mais próximo).
+        \item A assimetria do potencial leva a uma probabilidade maior de se mover em uma direção.
+        \item Velocidade líquida depende da assimetria e do tempo de "off" ($\tau_{off}$).
+    \end{itemize}
+\end{frame}
+
+% Seção 8: Teorema Flutuação-Dissipação
+\section{Teorema Flutuação-Dissipação}
+
+\begin{frame}
+    \frametitle{Relacionando Flutuações de Equilíbrio e Taxa de Abordagem ao Equilíbrio}
+    \begin{itemize}
+        \item Teorema importante da mecânica estatística.
+        \item A magnitude das flutuações de equilíbrio está relacionada à velocidade com que o sistema atinge o equilíbrio.
+        \item Permite determinar propriedades de transporte (D, $\eta$) a partir de flutuações de equilíbrio.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Modelo de Langevin}
+    \begin{itemize}
+        \item Modelo de uma partícula em movimento Browniano em 1D.
+        \item Forças atuantes: atrito ($\xi v$) e força aleatória flutuante ($f(t)$).
+        \item Equação de Langevin: $m \frac{dv}{dt} = f(t) - \xi v$.
+        \item $\langle f(t) \rangle = 0$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Função de Correlação Temporal da Velocidade}
+    \begin{itemize}
+        \item $\langle v(0)v(t) \rangle$: Média de conjunto do produto da velocidade no tempo 0 e no tempo $t$.
+        \item Descreve quão rápido o movimento Browniano "apaga" a memória da velocidade inicial.
+        \item Derivada do modelo de Langevin: $\langle v(0)v(t) \rangle = \frac{kT}{m} e^{-\xi t/m}$.
+        \item O tempo de correlação é $m/\xi$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Relações de Green-Kubo}
+    \begin{itemize}
+        \item Relacionam funções de correlação de equilíbrio com coeficientes de transporte.
+        \item Exemplo (coeficiente de difusão): $\int_{0}^{\infty}\langle v(0)v(t)\rangle dt = D$ (1D), $3D$ (3D).
+        \item Exemplo (coeficiente de atrito): $\xi = \frac{1}{2kT}\int_{-\infty}^{\infty}\langle f(0)f(t)\rangle dt$.
+        \item A viscosidade também pode ser expressa como uma função de correlação.
+    \end{itemize}
+\end{frame}
+
+% Seção 9: Relações Recíprocas de Onsager
+\section{Relações Recíprocas de Onsager}
+
+\begin{frame}
+    \frametitle{Descrevendo Fluxos Acoplados}
+    \begin{itemize}
+        \item Em sistemas com múltiplos processos de fluxo, eles podem ser acoplados.
+        \item Ex: Gradiente de temperatura afeta corrente elétrica (efeito Peltier), e vice-versa (efeito Seebeck).
+        \item Relações lineares generalizadas:
+        \begin{align*} J_1 &= L_{11}f_1 + L_{12}f_2 \\ J_2 &= L_{21}f_1 + L_{22}f_2 \end{align*}
+        \item $L_{12}$ e $L_{21}$ são coeficientes de acoplamento.
+        \item Observação experimental notável: $L_{12} = L_{21}$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Princípio da Reversibilidade Microscópica}
+    \begin{itemize}
+        \item Explicado por L. Onsager.
+        \item Em nível microscópico, os processos são reversíveis no tempo.
+        \item A probabilidade média de um estado de transição em uma direção é a mesma que na direção reversa.
+        \item Este princípio implica as relações recíprocas ($L_{12} = L_{21}$).
+    \end{itemize}
+\end{frame}
+
+% Seção 10: Resumo
+\section{Resumo}
+
+\begin{frame}
+    \frametitle{Resumo do Capítulo}
+    \begin{itemize}
+        \item Gradientes impulsionam fluxos (partículas, calor, carga).
+        \item A taxa de fluxo é proporcional ao gradiente (Lei de Fick, Fourier, Ohm).
+        \item A Equação da Difusão descreve a evolução temporal e espacial da concentração.
+        \item Fontes e sumidouros (ex: reações) modificam a equação da difusão.
+        \item Forças externas adicionais afetam o fluxo (Equação de Smoluchowski).
+        \item A Equação de Einstein-Smoluchowski relaciona difusão e atrito ($D=kT/\xi$).
+        \item A difusão microscópica é um processo de caminhada aleatória ($\langle x^2 \rangle = 2Dt$).
+        \item Catracas Brownianas usam assimetria e eventos de ligação/liberação para movimento direcionado.
+        \item O Teorema Flutuação-Dissipação relaciona flutuações de equilíbrio com propriedades de transporte.
+        \item As Relações Recíprocas de Onsager descrevem o acoplamento entre diferentes fluxos ($L_{ij}=L_{ji}$).
+    \end{itemize}
+\end{frame}
+
+% Slide Final (Opcional)
+\begin{frame}
+    \frametitle{Obrigado!}
+    \begin{center}
+        Perguntas?
+    \end{center}
+\end{frame}
+
+\end{document}
